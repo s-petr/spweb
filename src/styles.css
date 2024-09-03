@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    src: url('/fonts/inter-regular.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    src: url('/fonts/inter-italic.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Fira Code';
+    src: url('/fonts/fira-code.ttf') format('truetype');
+    font-weight: 300 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  :root {
+    --font-sans: Inter;
+    --font-mono: 'Fira Code';
+
+    --background: 220 0% 95%;
+    --foreground: 220 0% 10%;
+    --card: 220 0% 90%;
+    --card-foreground: 220 0% 15%;
+    --popover: 220 0% 95%;
+    --popover-foreground: 220 95% 10%;
+    --primary: 220 13% 18%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 10% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 182 10% 85%;
+    --muted-foreground: 220 0% 40%;
+    --accent: 182 10% 80%;
+    --accent-foreground: 220 0% 15%;
+    --destructive: 0 50% 50%;
+    --destructive-foreground: 220 0% 90%;
+    --border: 220 20% 85%;
+    --input: 220 20% 85%;
+    --ring: 220 13% 60%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 10% 10%;
+    --foreground: 220 0% 90%;
+    --card: 220 0% 10%;
+    --card-foreground: 220 0% 90%;
+    --popover: 220 10% 5%;
+    --popover-foreground: 220 0% 90%;
+    --primary: 220 13% 18%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 182 10% 25%;
+    --muted-foreground: 220 0% 60%;
+    --accent: 182 10% 25%;
+    --accent-foreground: 220 0% 90%;
+    --destructive: 0 50% 50%;
+    --destructive-foreground: 220 0% 90%;
+    --border: 220 20% 50%;
+    --input: 220 20% 50%;
+    --ring: 220 13% 18%;
+    --radius: 0.5rem;
+  }
+}
+
+html {
+  @apply antialiased;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
