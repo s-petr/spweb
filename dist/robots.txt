@@ -1,4 +1,5 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Disallow: /cv/ 
+Disallow: *.pdf  
 
 Sitemap: https://spweb.dev/sitemap.xml

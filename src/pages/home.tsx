@@ -119,12 +119,14 @@ function ContactLink({
   href,
   tooltip,
   className,
+  rel = 'noreferrer',
   obfuscate = false
 }: {
   children: React.ReactNode
   href: string
   tooltip?: string
   className?: string
+  rel?: string,
   obfuscate?: boolean
 }) {
   const linkStyle =
@@ -142,7 +144,7 @@ function ContactLink({
           ) : (
             <a
               target='_blank'
-              rel='noreferrer'
+              rel={rel}
               aria-label={tooltip}
               className={cn(linkStyle, className)}
               href={href}>
@@ -171,8 +173,9 @@ export default function Home() {
             <LinkedInIcon />
           </ContactLink>
           <ContactLink
-            href='/Sergei Petrov CV.pdf'
+            href='/cv/Sergei Petrov CV.pdf'
             tooltip='Download CV PDF'
+            rel='noreferrer nofollow'
             className='plausible-event-name--cv'>
             <CvIcon />
           </ContactLink>
