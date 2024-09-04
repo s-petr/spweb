@@ -257,13 +257,13 @@ export default function Learning() {
             <ExternalLink href='https://www.youtube.com/playlist?list=PLoILbKo9rG3skRCj37Kn5Zj803hhiuRK6'>
               Go Class by Matt Holiday
             </ExternalLink>{' '}
-            - the best course to go through the fundamentals of Go programming
-            language. Available for free on YouTube and way better than the
-            majority of paid courses out there. This is a purely theoretical
-            class to go through how the language works. It does not cover
-            packages or real-world projects, but it&apos;s a great starting
-            point for learning Go and for deciding whether you should continue
-            learning it.
+            - best series to learn fundamentals of the Go programming language.
+            Available for free on YouTube and way better than the majority of
+            paid courses out there. This is a purely theoretical class to go
+            through how the language works. It does not cover packages or
+            real-world projects, but it&apos;s a great starting point for
+            learning Go and for deciding whether you should continue learning
+            it.
           </Paragraph>
           <Paragraph>
             <ExternalLink href='https://www.udemy.com/course/lets-build-a-go-version-of-laravel'>
