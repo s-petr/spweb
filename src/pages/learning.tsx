@@ -358,20 +358,20 @@ export default function Learning() {
             </ExternalLink>{' '}
             - Docker is becoming a mandatory technology for professional web
             development. Kubernetes is useful to know about, depending on your
-            role and the company you work for. This course covers both. It has
-            useful real-world examples, like deploying a Node JS server or
-            WordPress site inside containers. It doesn&apos;t cover everything
-            but it will give you a solid foundation and the confidence to use
-            containers in your own projects.
+            role and the company you work for. This course covers both. It
+            covers useful real-world projects, for example deploying a Node JS
+            server with a MongoDB database, or a containerized WordPress site.
+            It doesn&apos;t cover everything but it will give you a solid
+            foundation and the confidence to use containers in your own
+            projects.
           </Paragraph>
           <Paragraph>
             <ExternalLink href='https://www.udemy.com/course/aws-cloud-practitioner-complete-aws-introduction'>
               AWS Certified Cloud Practitioner
             </ExternalLink>{' '}
-            - at some point in your career you will need to use a cloud service
-            provider, with AWS being the most popular one by far. A lot of
-            developer jobs today require ate least some knowledge of it. This is
-            an introductory course. It is like a guided tour of all the services
+            - most modern web applications are built using a cloud service
+            provider, AWS being the most popular one by far. This is an
+            introductory course. It is like a guided tour of all the services
             AWS has to offer. Cloud infrastructure is a separate discipline all
             by itself and a very deep rabbit hole. There are certifications and
             more advanced courses you can take. This course is a good starting
