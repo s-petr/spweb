@@ -68,7 +68,7 @@ export default function Navigation() {
                       Learning Resources
                     </div>
                     <p className='text-sm leading-tight text-muted-foreground'>
-                      Collection of links to courses and tutorials.
+                      Collection of links to courses and tutorials
                     </p>
                   </Link>
                 </NavigationMenuLink>
