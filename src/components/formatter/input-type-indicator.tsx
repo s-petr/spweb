@@ -123,7 +123,7 @@ function UnknownLogo({ className }: { className?: string }) {
   )
 }
 
-const logoMappings: { [key in InputDataType]: JSX.Element } = {
+const logoMappings: Record<InputDataType, JSX.Element> = {
   unknown: <UnknownLogo />,
   'json-valid': <JsonLogo className='fill-green-600' />,
   'json-broken': <JsonLogo className='fill-red-600' />,
@@ -180,9 +180,9 @@ export default function InputTypeIndicator({
                 key={`${inputDataTypeOption}-${index}`}
                 aria-label={`Format as ${getInputDataTypeLabel(inputDataTypeOption, 'action')}`}
                 search={
-                  inputDataTypeOption === 'unknown'
+                  inputDataTypeOption == 'unknown'
                     ? undefined
-                    : () => ({ type: inputDataTypeOption })
+                    : { type: inputDataTypeOption }
                 }
                 className='size-6 transition-all ease-in-out hover:scale-105 active:scale-100'
                 onClick={() => setMenuIsOpen(false)}>

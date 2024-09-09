@@ -264,6 +264,10 @@ export default function Formatter() {
           <Textarea
             value={input}
             aria-label='Code Input'
+            autoComplete='off'
+            autoCorrect='off'
+            autoCapitalize='off'
+            spellCheck='false'
             className={cn(
               'h-full resize-none font-mono text-xs',
               input.length
