@@ -180,7 +180,7 @@ export default function InputTypeIndicator({
                 key={`${inputDataTypeOption}-${index}`}
                 aria-label={`Format as ${getInputDataTypeLabel(inputDataTypeOption, 'action')}`}
                 search={
-                  inputDataTypeOption == 'unknown'
+                  inputDataTypeOption === 'unknown'
                     ? undefined
                     : { type: inputDataTypeOption }
                 }
