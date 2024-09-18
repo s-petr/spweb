@@ -1,4 +1,4 @@
-import CopyButton from '@/components/formatter/copy-button'
+import CopyButton from '@/components/shared/copy-button'
 import {
   Card,
   CardContent,

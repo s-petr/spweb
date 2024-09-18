@@ -1,5 +1,5 @@
-import CopyButton from '@/components/formatter/copy-button'
 import InputTypeIndicator from '@/components/formatter/input-type-indicator'
+import CopyButton from '@/components/shared/copy-button'
 import {
   Card,
   CardContent,
