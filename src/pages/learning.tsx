@@ -459,10 +459,25 @@ export default function Learning() {
             <ExternalLink href='https://www.udemy.com/course/complete-sql-databases-bootcamp-zero-to-mastery'>
               Complete SQL and Databases Bootcamp
             </ExternalLink>{' '}
-            - covers the essentials of SQL and database engineering without
-            taking up too much of your time. There are better courses out there
-            that go into more detail on specific topics and database types. But
-            this one is the best introduction and starting point.
+            - covers the basics of databases and SQL without taking up too much
+            of your time. There are better courses out there that go into more
+            detail on specific topics and database types. But this one is the
+            best introduction and starting point.
+          </Paragraph>
+
+          <Paragraph>
+            <ExternalLink href='https://www.udemy.com/course/database-engines-crash-course'>
+              Fundamentals of Database Engineering
+            </ExternalLink>{' '}
+            - a deep dive into the inner workings of databases. Explains key
+            concepts like transactions, ACID, isolation levels, locks and
+            concurrency control. Discusses how databases store records in memory
+            and on disk, what happens during reads and writes, how indexes work
+            and the data structures they use. There are many practical exercises
+            where you work with big tables, plan, evaluate and optimize SQL
+            queries. This course will help you make intelligent decisions about
+            which database technologies to use, how to structure tables and
+            write performant queries.
           </Paragraph>
         </Section>
 
