@@ -150,7 +150,7 @@ export default function Learning() {
             <ExternalLink href='https://www.udemy.com/course/advanced-typescript-bible'>
               Advanced TypeScript: Production-grade TypeScript Course
             </ExternalLink>{' '}
-            - Lots of questions and exercises covering very advanced topics like
+            - lots of questions and exercises covering very advanced topics like
             conditional types, mapped types, recursive types and type
             predicates. Discusses topics of assignability and covariance vs
             contravariance. It is useful if you are preparing for job interviews
@@ -312,7 +312,7 @@ export default function Learning() {
             <ExternalLink href='https://www.udemy.com/course/leetcode-in-go-algorithms-coding-interview-questions'>
               50 days of LeetCode in Go: Algorithms Coding Interview
             </ExternalLink>{' '}
-            - This course covers 50 data structures and algorithms coding
+            - this course covers 50 data structures and algorithms coding
             challenges taken from interview questions given by Big Tech
             companies. It&apos;s good practice, whether or not you are trying to
             land a job at one of these places. There are multiple versions of
