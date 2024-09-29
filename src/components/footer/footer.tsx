@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <>
       <ScrollToTopButton className='mx-auto' />
-      <div className='grid grid-cols-1 px-2 pb-2 text-xs text-muted-foreground md:mt-auto md:grid-cols-3'>
+      <footer className='grid grid-cols-1 px-2 pb-2 text-xs text-muted-foreground md:mt-auto md:grid-cols-3'>
         <p className='text-center md:text-left'>
           © {new Date().getFullYear()} Sergei Petrov
         </p>{' '}
@@ -22,7 +22,7 @@ export default function Footer() {
             source code
           </ExternalLink>
         </p>
-      </div>
+      </footer>
     </>
   )
 }
