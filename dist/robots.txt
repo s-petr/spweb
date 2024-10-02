@@ -1,5 +1,0 @@
-user-agent: *
-disallow: /cv/
-disallow: /*.pdf$
-
-sitemap: https://spweb.dev/sitemap.xml
