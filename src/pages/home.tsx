@@ -17,7 +17,7 @@ export default function Home() {
           </p>
 
           <p>
-            My primary focus is building full-stack web applications. I enjoy
+            Building full-stack web applications is my primary focus. I enjoy
             experimenting with new tech stacks and staying up-to-date with the
             latest web technologies, tools, and design patterns. The JavaScript
             and TypeScript ecosystem is my area of expertise. I am also
