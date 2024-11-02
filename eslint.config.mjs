@@ -4,6 +4,7 @@ import prettierConfig from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
 import prettierPlugin from 'eslint-plugin-prettier'
 import reactPlugin from 'eslint-plugin-react'
+import reactCompiler from 'eslint-plugin-react-compiler'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import tailwindPlugin from 'eslint-plugin-tailwindcss'
 import unusedImportsPlugin from 'eslint-plugin-unused-imports'
@@ -25,6 +26,7 @@ export default [
     },
     plugins: {
       react: reactPlugin,
+      'react-compiler': reactCompiler,
       'react-hooks': reactHooksPlugin,
       '@typescript-eslint': tsPlugin,
       import: importPlugin,
@@ -37,6 +39,7 @@ export default [
       ...reactHooksPlugin.configs.recommended.rules,
       ...importPlugin.configs.typescript.rules,
       ...tailwindPlugin.configs['flat/recommended'][1].rules,
+      'react-compiler/react-compiler': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'react-hooks/exhaustive-deps': 'off',
@@ -61,7 +64,10 @@ export default [
           ignoreRestSiblings: false
         }
       ],
-      'tailwindcss/no-custom-classname': ['warn', { whitelist: ['plausible-event-name--\\'] }],
+      'tailwindcss/no-custom-classname': [
+        'warn',
+        { whitelist: ['plausible-event-name--\\'] }
+      ],
       'prettier/prettier': 'warn'
     }
   },
