@@ -39,7 +39,7 @@ export default function ScrollToTopButton({
             <Button
               variant='link'
               className={cn(
-                'size-8 items-center gap-1 rounded-full p-0 transition-all ease-in-out hover:scale-105 hover:no-underline active:scale-100',
+                'mb-2 size-8 items-center gap-1 rounded-full p-0 text-muted-foreground transition-all ease-in-out hover:scale-105 hover:no-underline active:scale-100',
                 className
               )}
               disabled={!showButton}

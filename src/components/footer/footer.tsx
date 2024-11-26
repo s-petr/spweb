@@ -1,11 +1,12 @@
 import ExternalLink from '../shared/external-link'
+import { GitHubIcon } from '../shared/icons'
 import ScrollToTopButton from './scroll-to-top'
 
 export default function Footer() {
   return (
     <footer className='md:mt-auto'>
       <ScrollToTopButton className='mx-auto w-full' />
-      <div className='grid grid-cols-1 px-2 pb-2 text-xs text-muted-foreground md:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-0.5 px-2 pb-2 text-xs text-muted-foreground md:grid-cols-3'>
         <p className='text-center md:text-left'>
           © {new Date().getFullYear()} Sergei Petrov
         </p>{' '}
@@ -16,10 +17,10 @@ export default function Footer() {
             Hetzner VPS
           </ExternalLink>
         </p>
-        <p className='text-center md:text-right'>
-          Website{' '}
+        <p className='flex gap-1 justify-self-center md:justify-self-end'>
+          <GitHubIcon className='size-4 text-muted-foreground' />
           <ExternalLink href='https://github.com/s-petr/spweb'>
-            source code
+            Source code
           </ExternalLink>
         </p>
       </div>
