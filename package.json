@@ -23,7 +23,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fast-xml-parser": "^4.5.0",
-    "jsonrepair": "^3.10.0",
+    "jsonrepair": "^3.11.0",
     "lucide-react": "^0.439.0",
     "prettier": "^3.4.1",
     "react": "19.0.0-rc.1",
@@ -33,7 +33,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^22.10.0",
+    "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@typescript-eslint/eslint-plugin": "^8.16.0",
