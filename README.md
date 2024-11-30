@@ -4,7 +4,7 @@ A modern, responsive personal website and web development toolkit built with Rea
 
 ## 🌐 Visit
 
-Visit [spweb.dev](https://spweb.dev) or [spweb.dev](https://petrovsergei.com)
+Visit [spweb.dev](https://spweb.dev) or [petrovsergei.com](https://petrovsergei.com)
 
 ## ✨ Features
 
