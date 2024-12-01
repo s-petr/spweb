@@ -61,7 +61,7 @@ export default function Learning() {
           </Paragraph>
           <Paragraph>
             <ExternalLink href='https://www.udemy.com/course/ui-design-bootcamp-master-typography-colour-grids'>
-              UI Design Bootcamp: Master Typography, Colour and Grids
+              UI Design Bootcamp: Master Typography, Color and Grids
             </ExternalLink>{' '}
             - explains the basics of design, composition, color and typography.
             Useful to be familiar with these concepts if you are doing front-end
@@ -77,7 +77,7 @@ export default function Learning() {
               JavaScript: The Complete Guide
             </ExternalLink>{' '}
             - one of the best courses for learning regular JavaScript. It covers
-            all the important topics of Vanilla JS in more detail than
+            all the important topics of vanilla JS in more detail than
             you&apos;re likely to ever need. Covers all the new ES6+ syntax and
             browser APIs. This course is focused on teaching pure JavaScript. It
             does not get distracted by going into specific packages and
@@ -162,7 +162,7 @@ export default function Learning() {
             <ExternalLink href='https://www.udemy.com/course/design-patterns-using-typescript'>
               TypeScript Design Patterns And SOLID Principles
             </ExternalLink>{' '}
-            - Object-Oriented Programming key concepts, SOLID principles, and
+            - object-oriented programming key concepts, SOLID principles, and
             design patterns explained with examples written in TypeScript. This
             is not mandatory to learn for most projects using TypeScript.
             However, it is essential knowledge for many other programming
@@ -219,7 +219,7 @@ export default function Learning() {
             </ExternalLink>{' '}
             - explains the correct way to write unit tests for React projects
             using React Testing Library. Assumes you are already familiar with
-            writing tests for Vanilla JS projects using Jest or Vitest.
+            writing tests for vanilla JS projects using Jest or Vitest.
           </Paragraph>
         </Section>
 
@@ -303,7 +303,7 @@ export default function Learning() {
             <ExternalLink href='https://www.udemy.com/course/working-with-design-patterns-in-go-golang'>
               Working with Design Patterns in Go
             </ExternalLink>{' '}
-            - the Go language supports object oriented programming but it is
+            - the Go language supports object-oriented programming but it is
             implemented in an unusual way. The classical design patterns used in
             OOP languages like Java and C# do not translate easily to Go. This
             course teaches the correct way to use design patterns in Go.
@@ -337,7 +337,7 @@ export default function Learning() {
             PHP. So you will end up having to work with PHP eventually. The
             benefits of PHP are its popularity, a mature ecosystem of frameworks
             and tools, a large library of built-in utility functions and good
-            object oriented programming support.
+            object-oriented programming support.
           </Paragraph>
           <Paragraph>
             <ExternalLink href='https://www.youtube.com/playlist?list=PLr3d3QYzkw2xabQRUpcZ_IBk9W50M9pe-'>
