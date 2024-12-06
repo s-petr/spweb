@@ -6,14 +6,14 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
+import { PropsWithChildren } from 'react'
 
 function Section({
   children,
   title
-}: {
-  children?: React.ReactNode
+}: PropsWithChildren<{
   title: string
-}) {
+}>) {
   return (
     <section className='flex flex-col gap-4'>
       <h3 className='text-center text-base uppercase text-card-foreground'>
@@ -24,7 +24,7 @@ function Section({
   )
 }
 
-function Paragraph({ children }: { children?: React.ReactNode }) {
+function Paragraph({ children }: PropsWithChildren) {
   return <p className='text-justify text-sm'>{children}</p>
 }
 

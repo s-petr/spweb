@@ -37,8 +37,9 @@ SyntaxHighlighter.registerLanguage('html', html)
 SyntaxHighlighter.registerLanguage('xml', xml)
 SyntaxHighlighter.registerLanguage('css', css)
 
+const formatterApi = getRouteApi('/formatter')
+
 export default function Formatter() {
-  const formatterApi = getRouteApi('/formatter')
   const { type: inputDataTypeOverride } = formatterApi.useSearch()
 
   const [input, setInput] = useState('')

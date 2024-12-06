@@ -5,6 +5,7 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { cn } from '@/lib/shadcn'
+import { PropsWithChildren } from 'react'
 import {
   CvIcon,
   EmailIcon,
@@ -20,14 +21,13 @@ function ContactLink({
   className,
   rel = 'noreferrer',
   obfuscate = false
-}: {
-  children: React.ReactNode
+}: PropsWithChildren<{
   href: string
   tooltip?: string
   className?: string
   rel?: string
   obfuscate?: boolean
-}) {
+}>) {
   const linkStyle =
     'flex cursor-pointer items-center gap-2 text-lg transition-all ease-in-out hover:scale-105 active:scale-100'
   return (

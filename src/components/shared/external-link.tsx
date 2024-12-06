@@ -1,14 +1,14 @@
 import { cn } from '@/lib/shadcn'
+import { PropsWithChildren } from 'react'
 
 export default function ExternalLink({
   children,
   href,
   className
-}: {
-  children: React.ReactNode
+}: PropsWithChildren<{
   href: string
   className?: string
-}) {
+}>) {
   return (
     <a
       href={href}
