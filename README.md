@@ -4,7 +4,7 @@ A modern, responsive personal website and web development toolkit built with Rea
 
 ## 🌐 Visit
 
-Visit [spweb.dev](https://spweb.dev) or [petrovsergei.com](https://petrovsergei.com)
+[spweb.dev](https://spweb.dev) or [petrovsergei.com](https://petrovsergei.com)
 
 ## ✨ Features
 
@@ -21,11 +21,13 @@ Visit [spweb.dev](https://spweb.dev) or [petrovsergei.com](https://petrovsergei.
 
 ## 🛠️ Tech Stack
 
-- [React](https://react.dev/) - Frontend Framework (Running React 19 RC with React Compiler)
-- [TypeScript](https://www.typescriptlang.org/) - Type Safety
-- [Vite](https://vitejs.dev/) - Build Tool
+- [React](https://react.dev/) - Frontend Framework (running latest React 19 with React Compiler enabled)
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Vite](https://vitejs.dev/) - Build tool and bundler for React
 - [TanStack Router](https://tanstack.com/router) - Modern type-safe router for React
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
 - [shadcn/ui](https://ui.shadcn.com/) - React component library based on TailwindCSS and Radix UI
-- [ESLint](https://eslint.org/) - Code Linting
-- [Prettier](https://prettier.io/) - Code Formatting
+- [React Syntax Highlighter](https://www.npmjs.com/package/react-syntax-highlighter) - Code syntax highlighting for React. Used for the code formatter app.
+- [JSON Repair](https://www.npmjs.com/package/jsonrepair) - Repair invalid and incomplete JSON. Used for the code formatter app.
+- [Prettier](https://prettier.io/) - Code formatting. Used during development and in the client browser for the code formatter app.
+- [ESLint](https://eslint.org/) - Code linting. Includes plugins for React and TailwindCSS.
