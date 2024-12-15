@@ -43,6 +43,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'react-hooks/exhaustive-deps': 'off',
+      'react/jsx-no-target-blank': 'off',
       'react/jsx-sort-props': [
         'warn',
         {
@@ -66,7 +67,7 @@ export default [
       ],
       'tailwindcss/no-custom-classname': [
         'warn',
-        { whitelist: ['plausible-event-name--\\'] }
+        { whitelist: ['^plausible-event-name--.*'] }
       ],
       'prettier/prettier': 'warn'
     }

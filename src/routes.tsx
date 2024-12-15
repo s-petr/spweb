@@ -8,8 +8,8 @@ import {
   createRoute,
   createRouter
 } from '@tanstack/react-router'
+import { lazy } from 'react'
 import BulkLinks from './pages/bulk-links'
-import Formatter from './pages/formatter'
 import Learning from './pages/learning'
 
 const rootRoute = createRootRoute({
@@ -40,7 +40,7 @@ const formatterRoute = createRoute({
     return { type: isInputDataType(search.type) ? search.type : undefined }
   },
 
-  component: Formatter
+  component: lazy(() => import('./pages/formatter'))
 })
 
 const timestampRoute = createRoute({

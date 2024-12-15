@@ -12,7 +12,7 @@ import {
 import { getInputDataTypeLabel, InputDataType } from '@/lib/input-type-label'
 import { cn } from '@/lib/shadcn'
 import { Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 function JsonLogo({ className }: { className?: string }) {
   return (
@@ -123,7 +123,7 @@ function UnknownLogo({ className }: { className?: string }) {
   )
 }
 
-const logoMappings: Record<InputDataType, JSX.Element> = {
+const logoMappings: Record<InputDataType, React.JSX> = {
   unknown: <UnknownLogo />,
   'json-valid': <JsonLogo className='fill-green-600' />,
   'json-broken': <JsonLogo className='fill-red-600' />,
@@ -174,7 +174,7 @@ export default function InputTypeIndicator({
       </PopoverTrigger>
       <PopoverContent className='w-fit p-2'>
         <div className='grid grid-cols-3 gap-2'>
-          {(Object.entries(logoMappings) as [InputDataType, JSX.Element][]).map(
+          {(Object.entries(logoMappings) as [InputDataType, React.JSX][]).map(
             ([inputDataTypeOption, logo], index) => (
               <Link
                 key={`${inputDataTypeOption}-${index}`}

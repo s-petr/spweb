@@ -10,5 +10,27 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          ui: [
+            '@tanstack/react-router',
+            '@radix-ui/react-label',
+            '@radix-ui/react-navigation-menu',
+            '@radix-ui/react-popover',
+            '@radix-ui/react-select',
+            '@radix-ui/react-separator',
+            '@radix-ui/react-slot',
+            '@radix-ui/react-switch',
+            '@radix-ui/react-tooltip',
+            'class-variance-authority',
+            'clsx',
+            'lucide-react'
+          ]
+        }
+      }
+    }
+  },
   resolve: { alias: { '@': path.resolve(__dirname, './src') } }
 })

@@ -43,7 +43,7 @@ function ContactLink({
           ) : (
             <a
               target='_blank'
-              rel={rel}
+              rel={cn(rel, 'noreferrer')}
               aria-label={tooltip}
               className={cn(linkStyle, className)}
               href={href}>
@@ -72,7 +72,7 @@ export default function LinkButtons() {
       <ContactLink
         href='/cv/Sergei Petrov CV.pdf'
         tooltip='Download CV PDF'
-        rel='noreferrer nofollow'
+        rel='nofollow'
         className='plausible-event-name--cv'>
         <CvIcon />
       </ContactLink>
