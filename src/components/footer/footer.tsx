@@ -12,7 +12,7 @@ export default function Footer() {
         </p>{' '}
         <p className='text-center'>
           Hosted with{' '}
-          <ExternalLink href='https://coolify.io/'>Coolify</ExternalLink> on a{' '}
+          <ExternalLink href='https://dokploy.com'>Dokploy</ExternalLink> on a{' '}
           <ExternalLink href='https://www.hetzner.com/cloud'>
             Hetzner VPS
           </ExternalLink>
