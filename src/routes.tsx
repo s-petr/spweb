@@ -32,9 +32,7 @@ const learningRoute = createRoute({
 const formatterRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/formatter',
-  validateSearch: (
-    search: Record<string, unknown>
-  ): { type?: InputDataType } => {
+  validateSearch: (search): { type?: InputDataType } => {
     const isInputDataType = (type: unknown): type is InputDataType =>
       inputDataTypes && inputDataTypes.includes(type as InputDataType)
     return { type: isInputDataType(search.type) ? search.type : undefined }

@@ -179,6 +179,7 @@ export default function InputTypeIndicator({
               <Link
                 key={`${inputDataTypeOption}-${index}`}
                 aria-label={`Format as ${getInputDataTypeLabel(inputDataTypeOption, 'action')}`}
+                to='/formatter'
                 search={
                   inputDataTypeOption === 'unknown'
                     ? undefined
