@@ -195,23 +195,27 @@ export default function Learning() {
             are equally high quality.
           </Paragraph>
           <Paragraph>
-            <ExternalLink href='https://developedbyed.com/p/the-full-stack-react-course'>
-              Ultimate Next JS Course
+            <ExternalLink href='https://www.udemy.com/course/nextjs-ecommerce-course'>
+              Next JS Ecommerce
             </ExternalLink>{' '}
-            - goes through more advanced topics like using TypeScript with React
-            and Next JS. You build one big project and learn how to use the all
-            the popular tools in the React/Next JS ecosystem. Like Next Auth
-            (authentication), React Hook Form (forms), Zod (validation), Drizzle
-            ORM (SQL query builder), and Zustand (modern state manager, Redux
-            alternative). Also Tailwind CSS, ShadCN UI, Framer Motion and
-            Recharts for styles and visualizations. Teaches how to integrate
-            third party services like Stripe (payments), Resend (emails),
-            Algolia (search), Neon DB (cloud SQL database) with your Next JS
-            project. The course author has a large active{' '}
-            <ExternalLink href='https://www.youtube.com/@developedbyed'>
-              YouTube channel
-            </ExternalLink>{' '}
-            and updates his courses regularly.
+            - build a production-ready online shopping website from scratch
+            using modern Next JS. This is not a beginner course and it does not
+            cover the basics of React and Next JS. This is ideal for people who
+            are already familiar with the React ecosystem and want a refresher
+            to go through the latest tools and design patterns. Since the
+            beginning of 2025 there have been substantial changes to React and
+            Next JS. This opened up new possibilities and made some previous
+            design patterns outdated. This course was built with Typescript
+            using React 19 and Next JS 15. It utilizes React Server Components,
+            Server Actions and the new React 19 hooks like useActionState and
+            useTransition. It covers working with the most popular libraries
+            like Prisma (database ORM), Next Auth (authentication), Zod
+            (validation), Tailwind CSS (CSS framework) and ShadCN UI (components
+            library). You will learn how to connect your project to third-party
+            services like Stripe and PayPal (payments), Resend (emails) and
+            UploadThing (file hosting). By the end of the course, you will have
+            a solid foundation for starting your own Next JS project using the
+            latest best practices.
           </Paragraph>
           <Paragraph>
             <ExternalLink href='https://www.udemy.com/course/react-testing-library-and-jest'>
