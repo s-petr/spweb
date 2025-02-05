@@ -5,11 +5,12 @@ const PRETTIER_SETTINGS = {
   tabWidth: 2,
   semi: false,
   singleQuote: true,
-  singleAttributePerLine: true,
+  singleAttributePerLine: false,
   bracketSameLine: true,
   jsxSingleQuote: true,
   printWidth: 100,
-  endOfLine: 'auto'
+  endOfLine: 'auto',
+  xmlWhitespaceSensitivity: 'ignore'
 } as const
 
 async function loadClientSidePrettier() {
@@ -17,6 +18,7 @@ async function loadClientSidePrettier() {
   const prettierPluginBabel = await import('prettier/plugins/babel')
   const prettierPluginEstree = await import('prettier/plugins/estree')
   const prettierPluginHtml = await import('prettier/plugins/html')
+  const prettierPluginXml = await import('@prettier/plugin-xml')
   const prettierPluginCSS = await import('prettier/plugins/postcss')
   const prettierPluginTypescript = await import('prettier/plugins/typescript')
 
@@ -24,6 +26,7 @@ async function loadClientSidePrettier() {
     prettierPluginBabel.default,
     prettierPluginEstree.default,
     prettierPluginHtml.default,
+    prettierPluginXml.default,
     prettierPluginCSS.default,
     prettierPluginTypescript.default
   ]

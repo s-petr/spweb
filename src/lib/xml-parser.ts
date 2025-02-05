@@ -10,7 +10,7 @@ export const parseXml = async (
   if (!/<([a-z]+)(?![^>]*\/>)[^>]*>/.test(input))
     throw new Error('Not valid XML')
   if (willCleanupString) input = cleanUpString(input)
-  const prettyXml = await parseWithPrettier(input, 'html')
+  const prettyXml = await parseWithPrettier(input, 'xml')
 
   const xmlParser = new XMLParser({ ignoreAttributes: false })
   const jsFromXml = xmlParser.parse(input)
