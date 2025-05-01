@@ -11,7 +11,7 @@ import {
   EmailIcon,
   GitHubIcon,
   LinkedInIcon,
-  SkypeIcon
+  XIcon
 } from '../shared/icons'
 
 function ContactLink({
@@ -79,11 +79,8 @@ export default function LinkButtons() {
       <ContactLink href='https://github.com/s-petr' tooltip='GitHub Profile'>
         <GitHubIcon />
       </ContactLink>
-      <ContactLink
-        obfuscate
-        href='aHR0cHM6Ly9qb2luLnNreXBlLmNvbS9pbnZpdGUvT0ZOT2ZQbUlwN1cx'
-        tooltip='Skype Chat'>
-        <SkypeIcon />
+      <ContactLink href='https://x.com/spweb_dev' tooltip='X Profile'>
+        <XIcon />
       </ContactLink>
       <ContactLink
         obfuscate
