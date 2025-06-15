@@ -269,48 +269,22 @@ export default function Learning() {
             learning Go and for deciding whether you should continue learning
             it.
           </Paragraph>
+
           <Paragraph>
-            <ExternalLink href='https://www.udemy.com/course/lets-build-a-go-version-of-laravel'>
-              Let&apos;s Build a Go Version of Laravel - Part 1
-            </ExternalLink>
-            {' and '}
-            <ExternalLink href='https://www.udemy.com/course/lets-build-a-go-version-of-laravel-part-two'>
-              Part 2
+            <ExternalLink href='https://www.udemy.com/course/gobootcampwithgrpcandprotocolbuffers/'>
+              Comprehensive Go Bootcamp with gRPC and Protocol Buffers
             </ExternalLink>{' '}
-            - all the courses by{' '}
-            <ExternalLink href='https://www.udemy.com/user/trevor-sawler/'>
-              Trevor Sawler
-            </ExternalLink>{' '}
-            are great. I think this one is the most useful overall. You build an
-            MVC web framework from scratch with functionality similar to
-            PHP&apos;s Laravel. It covers almost anything you might want to do
-            with Go on a web server. Creating API endpoints, serving HTML
-            templates, sending emails, connecting to databases, setting up a
-            cache, uploading files, performing authentication, writing tests and
-            creating a command line tool. Most of the code you write is
-            universal and can easily be adapted for your own projects.
-          </Paragraph>
-          <Paragraph>
-            <ExternalLink href='https://www.udemy.com/course/working-with-concurrency-in-go-golang'>
-              Working with Concurrency in Go
-            </ExternalLink>{' '}
-            - great concurrency support is the key feature that makes Go stand
-            out from other programming languages. But the topic is confusing if
-            you come from a JavaScript background. A lot of the concepts will be
-            completely unfamiliar to you. This is the most detailed course on
-            Go&apos;s concurrency model and its practical applications. It goes
-            through all the key concepts like goroutines, waitgroups, mutexes
-            and channels. There is a real-world project at the end to build a
-            concurrent mailer app.
-          </Paragraph>
-          <Paragraph>
-            <ExternalLink href='https://www.udemy.com/course/working-with-design-patterns-in-go-golang'>
-              Working with Design Patterns in Go
-            </ExternalLink>{' '}
-            - the Go language supports object-oriented programming but it is
-            implemented in an unusual way. The classical design patterns used in
-            OOP languages like Java and C# do not translate easily to Go. This
-            course teaches the correct way to use design patterns in Go.
+            - the most comprehensive and up-to-date Go course on the market
+            right now. Covers all the important features of the language,
+            starting from the basics and all the way to advanced topics like
+            concurrency and reflection. The second part of the course is a deep
+            dive into using Go for back-end web development. You build one big
+            API - first a REST version, then a gRPC version. The REST API is
+            done from scratch using the Go standard library and the new
+            http.ServeMux router that came out in version 1.22. The course also
+            does a really good job of explaining how to build a production-ready
+            gRPC API. Includes advanced topics like adding validation,
+            authentication and middleware, testing and performance benchmarking.
           </Paragraph>
           <Paragraph>
             <ExternalLink href='https://www.udemy.com/course/leetcode-in-go-algorithms-coding-interview-questions'>
