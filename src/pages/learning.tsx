@@ -16,7 +16,7 @@ function Section({
 }>) {
   return (
     <section className='flex flex-col gap-4'>
-      <h3 className='text-center text-base uppercase text-card-foreground'>
+      <h3 className='text-card-foreground text-center text-base uppercase'>
         {title}
       </h3>
       {children}
@@ -30,7 +30,7 @@ function Paragraph({ children }: PropsWithChildren) {
 
 export default function Learning() {
   return (
-    <Card className='border-none bg-gradient-to-b from-muted/75 to-card px-4'>
+    <Card className='from-muted/75 to-card border-none bg-linear-to-b px-4'>
       <CardHeader className='mx-auto flex max-w-[800px] flex-col items-center justify-between gap-2 px-0 py-8'>
         <CardTitle>Learning Resources</CardTitle>
         <CardDescription className='text-justify text-sm'>
@@ -40,7 +40,7 @@ export default function Learning() {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className='mx-auto flex max-w-[800px] flex-col items-center gap-y-8 px-0 text-muted-foreground'>
+      <CardContent className='text-muted-foreground mx-auto flex max-w-[800px] flex-col items-center gap-y-8 px-0'>
         <Section title='HTML and CSS'>
           <Paragraph>
             <ExternalLink href='https://www.udemy.com/course/html-and-css-bootcamp'>

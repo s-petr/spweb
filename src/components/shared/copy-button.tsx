@@ -74,7 +74,7 @@ export default function CopyButton({
         <Tooltip>
           <TooltipTrigger asChild>
             <div
-              className='rounded-md bg-background p-0.5'
+              className='bg-background rounded-md p-0.5'
               onClick={handleCopy}>
               {copied ? (
                 <ClipobardCopied className='size-6 cursor-default' />

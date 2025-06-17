@@ -12,7 +12,7 @@ export default function ExternalLink({
   return (
     <a
       href={href}
-      className={cn('font-medium text-card-foreground', className)}
+      className={cn('text-card-foreground font-medium', className)}
       target='_blank'
       rel='noreferrer'>
       {children}

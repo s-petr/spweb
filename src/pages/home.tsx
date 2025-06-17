@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card'
 
 export default function Home() {
   return (
-    <Card className='size-full border-none bg-gradient-to-b from-muted/75 to-card px-4 py-8'>
+    <Card className='from-muted/75 to-card size-full border-none bg-linear-to-b px-4 py-8'>
       <CardContent className='flex flex-col items-center gap-y-8 px-0'>
         <LinkButtons />
 

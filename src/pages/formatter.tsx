@@ -206,7 +206,7 @@ export default function Formatter() {
     : ''
 
   return (
-    <Card className='size-full space-y-2 border-none bg-gradient-to-b from-muted/75 to-card p-2'>
+    <Card className='from-muted/75 to-card size-full space-y-2 border-none bg-linear-to-b p-2'>
       <CardHeader className='flex h-fit justify-between gap-x-4 p-2 md:flex-row md:items-center'>
         <div className='flex flex-col gap-y-1'>
           <CardTitle>Universal Code Formatter</CardTitle>
@@ -257,7 +257,7 @@ export default function Formatter() {
       <CardContent className='grid h-dvh grid-cols-1 gap-4 px-2 py-0 md:h-[85%] md:grid-cols-2'>
         <div className='relative'>
           <InputTypeIndicator
-            className='absolute right-6 top-4 size-6 rounded-md bg-background saturate-50'
+            className='bg-background absolute top-4 right-6 size-6 rounded-md saturate-50'
             inputDataType={inputDataType}
             inputIsEmpty={!!input.length}
             inputDataTypeOverride={inputDataTypeOverride}
@@ -285,11 +285,11 @@ export default function Formatter() {
           {!!input.length && (
             <CopyButton
               output={output}
-              className='absolute right-6 top-4 z-20 size-6'
+              className='absolute top-4 right-6 z-20 size-6'
             />
           )}
           <SyntaxHighlighter
-            className='absolute size-full overflow-y-auto whitespace-pre-wrap break-all rounded-md border bg-background text-xs'
+            className='bg-background absolute size-full overflow-y-auto rounded-md border text-xs break-all whitespace-pre-wrap'
             language={getMarkupHighlighter()}
             wrapLongLines={true}
             style={theme}>

@@ -11,7 +11,7 @@ import { useRouter } from '@tanstack/react-router'
 export default function NotFound() {
   const router = useRouter()
   return (
-    <Card className='size-full border-none bg-gradient-to-b from-muted/75 to-card'>
+    <Card className='from-muted/75 to-card size-full border-none bg-linear-to-b'>
       <CardHeader className='mx-auto flex flex-col items-center justify-between gap-y-1'>
         <CardTitle>Something went wrong</CardTitle>
         <CardDescription className='text-sm'>

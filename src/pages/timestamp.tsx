@@ -160,7 +160,7 @@ export default function TimestampTool() {
           : ''
 
   return (
-    <Card className='border-none bg-gradient-to-b from-muted/75 to-card px-4'>
+    <Card className='from-muted/75 to-card border-none bg-linear-to-b px-4'>
       <CardHeader className='mx-auto flex max-w-[800px] flex-col justify-between gap-y-1 px-0'>
         <CardTitle>Timestamp Tool</CardTitle>
         <CardDescription className='text-sm'>
@@ -170,8 +170,8 @@ export default function TimestampTool() {
 
       <CardContent className='mx-auto flex max-w-[800px] flex-col gap-y-4 px-0'>
         <div className='hidden justify-between md:flex'>
-          <h3 className='text-base uppercase text-card-foreground'>Start</h3>
-          <h3 className='text-base uppercase text-card-foreground'>End</h3>
+          <h3 className='text-card-foreground text-base uppercase'>Start</h3>
+          <h3 className='text-card-foreground text-base uppercase'>End</h3>
         </div>
 
         <DisplayPair
@@ -232,7 +232,7 @@ export default function TimestampTool() {
                 <Label htmlFor='delta-years'>Years</Label>
                 <Input
                   readOnly
-                  className='rounded-r-none bg-primary-foreground/25 text-center'
+                  className='bg-primary-foreground/25 rounded-r-none text-center'
                   type='text'
                   id='delta-years'
                   value={deltas[0]}
@@ -243,7 +243,7 @@ export default function TimestampTool() {
                 <Label htmlFor='delta-months'>Months</Label>
                 <Input
                   readOnly
-                  className='rounded-none bg-primary-foreground/25 text-center'
+                  className='bg-primary-foreground/25 rounded-none text-center'
                   type='text'
                   id='delta-months'
                   value={deltas[1]}
@@ -254,7 +254,7 @@ export default function TimestampTool() {
                 <Label htmlFor='delta-days'>Days</Label>
                 <Input
                   readOnly
-                  className='rounded-l-none bg-primary-foreground/25 text-center md:rounded-r-none'
+                  className='bg-primary-foreground/25 rounded-l-none text-center md:rounded-r-none'
                   type='text'
                   id='delta-days'
                   value={deltas[2]}
@@ -267,7 +267,7 @@ export default function TimestampTool() {
                 <Label htmlFor='delta-hours'>Hrs</Label>
                 <Input
                   readOnly
-                  className='rounded-r-none bg-primary-foreground/25 text-center md:rounded-l-none'
+                  className='bg-primary-foreground/25 rounded-r-none text-center md:rounded-l-none'
                   type='text'
                   id='delta-hours'
                   value={deltas[3]}
@@ -278,7 +278,7 @@ export default function TimestampTool() {
                 <Label htmlFor='delta-minutes'>Mins</Label>
                 <Input
                   readOnly
-                  className='rounded-none bg-primary-foreground/25 text-center'
+                  className='bg-primary-foreground/25 rounded-none text-center'
                   type='text'
                   id='delta-minutes'
                   value={deltas[4]}
@@ -289,7 +289,7 @@ export default function TimestampTool() {
                 <Label htmlFor='delta-seconds'>Secs</Label>
                 <Input
                   readOnly
-                  className='rounded-none bg-primary-foreground/25 text-center'
+                  className='bg-primary-foreground/25 rounded-none text-center'
                   type='text'
                   id='delta-seconds'
                   value={deltas[5]}
@@ -300,7 +300,7 @@ export default function TimestampTool() {
                 <Label htmlFor='delta-milliseconds'>Ms</Label>
                 <Input
                   readOnly
-                  className='rounded-l-none bg-primary-foreground/25 text-center'
+                  className='bg-primary-foreground/25 rounded-l-none text-center'
                   type='text'
                   id='delta-milliseconds'
                   value={deltas[6]}

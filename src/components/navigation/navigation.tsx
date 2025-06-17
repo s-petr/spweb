@@ -30,11 +30,11 @@ function MenuItem({
           to={to}
           aria-label={title}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors duration-100 hover:bg-card hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            'hover:bg-card hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors duration-100 select-none',
             className
           )}>
-          <div className='text-sm font-medium leading-none'>{title}</div>
-          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+          <div className='text-sm leading-none font-medium'>{title}</div>
+          <p className='text-muted-foreground line-clamp-2 text-sm leading-snug'>
             {children}
           </p>
         </Link>
@@ -51,10 +51,10 @@ export default function Navigation() {
       </Link>
 
       <NavigationMenuList>
-        <NavigationMenuItem className='left-auto right-0'>
+        <NavigationMenuItem className='right-0 left-auto'>
           <NavigationMenuTrigger
             aria-label='Main Menu'
-            className='px-4 focus:bg-inherit data-[active]:bg-inherit data-[state=open]:bg-inherit'>
+            className='px-4 focus:bg-inherit data-active:bg-inherit data-[state=open]:bg-inherit'>
             <MenuIcon />
           </NavigationMenuTrigger>
           <NavigationMenuContent className='border-none'>
@@ -62,12 +62,12 @@ export default function Navigation() {
               <li className='row-span-3'>
                 <NavigationMenuLink asChild aria-label='Learning Resources'>
                   <Link
-                    className='flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/75 to-card p-6 no-underline outline-none focus:shadow-md'
+                    className='from-muted/75 to-card flex size-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md'
                     to='/learning'>
-                    <div className='mb-2 mt-4 text-lg font-medium'>
+                    <div className='mt-4 mb-2 text-lg font-medium'>
                       Learning Resources
                     </div>
-                    <p className='text-sm leading-tight text-muted-foreground'>
+                    <p className='text-muted-foreground text-sm leading-tight'>
                       Collection of links to courses and tutorials
                     </p>
                   </Link>

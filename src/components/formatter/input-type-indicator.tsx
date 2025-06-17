@@ -195,7 +195,7 @@ export default function InputTypeIndicator({
                         inputDataTypeOverride !== 'unknown' &&
                           inputDataTypeOption === inputDataType
                           ? 'saturate-100'
-                          : 'saturate-[25%]'
+                          : 'saturate-25'
                       )}>
                       {logo}
                     </TooltipTrigger>

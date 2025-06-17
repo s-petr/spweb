@@ -7,7 +7,7 @@ const Card = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'rounded-lg border bg-card text-card-foreground shadow-sm',
+      'bg-card text-card-foreground rounded-lg border shadow-xs',
       className
     )}
     {...props}
@@ -27,7 +27,7 @@ const CardTitle = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'text-2xl font-semibold leading-none tracking-tight',
+      'text-2xl leading-none font-semibold tracking-tight',
       className
     )}
     {...props}
@@ -38,7 +38,7 @@ const CardDescription = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('text-sm text-muted-foreground', className)} {...props} />
+  <div className={cn('text-muted-foreground text-sm', className)} {...props} />
 )
 
 const CardContent = ({
