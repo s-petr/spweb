@@ -67,6 +67,18 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
   @font-face {
     font-family: 'Inter';
     src: url('/fonts/inter-regular.woff2') format('woff2');
@@ -130,18 +142,6 @@
     --input: 220 20% 50%;
     --ring: 220 13% 18%;
     --radius: 0.5rem;
-  }
-
-  * {
-    @apply border-border;
-  }
-
-  html {
-    @apply antialiased;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 }
 
