@@ -54,7 +54,7 @@ export default function Navigation() {
         <NavigationMenuItem className='right-0 left-auto'>
           <NavigationMenuTrigger
             aria-label='Main Menu'
-            className='px-4 focus:bg-inherit data-active:bg-inherit data-[state=open]:bg-inherit'>
+            className='cursor-pointer px-4 hover:scale-105 focus:bg-inherit data-active:bg-inherit data-[state=open]:bg-inherit'>
             <MenuIcon />
           </NavigationMenuTrigger>
           <NavigationMenuContent className='border-none'>

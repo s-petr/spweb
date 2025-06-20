@@ -2,11 +2,11 @@
 
 A modern, responsive personal website and web development toolkit built with React, TypeScript, and Tailwind CSS.
 
-## 🌐 Visit
+## Visit
 
 [spweb.dev](https://spweb.dev) or [petrovsergei.com](https://petrovsergei.com)
 
-## ✨ Features
+## Features
 
 - **Home Page**: Personal profile and links page
 - **Learning Resources**: Curated collection of web development learning materials
@@ -19,7 +19,7 @@ A modern, responsive personal website and web development toolkit built with Rea
 - **Timestamp Tool**: Convert and compare dates and Unix timestamps
 - **Bulk Link Builder**: Generate lists of hyperlinks from templates
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - [React](https://react.dev/) - Frontend Framework (running latest React 19 with React Compiler enabled)
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
