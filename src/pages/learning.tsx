@@ -281,10 +281,10 @@ export default function Learning() {
             dive into using Go for back-end web development. You build one big
             API - first a REST version, then a gRPC version. The REST API is
             done from scratch using the Go standard library and the new
-            http.ServeMux router that came out in version 1.22. The course also
-            does a really good job of explaining how to build a production-ready
-            gRPC API. Includes advanced topics like adding validation,
-            authentication and middleware, testing and performance benchmarking.
+            http.ServeMux router that came out in version 1.22. The course does
+            a really good job of explaining how to build a production-ready gRPC
+            API. Includes advanced topics like adding validation,
+            authentication, middleware, testing and performance benchmarking.
           </Paragraph>
           <Paragraph>
             <ExternalLink href='https://www.udemy.com/course/leetcode-in-go-algorithms-coding-interview-questions'>
