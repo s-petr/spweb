@@ -162,7 +162,10 @@ export default function InputTypeIndicator({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div role='button' aria-label={inputDataTypeButtonLabel}>
+              <div
+                role='button'
+                aria-label={inputDataTypeButtonLabel}
+                className='cursor-pointer'>
                 {logoMappings[inputDataType]}
               </div>
             </TooltipTrigger>
@@ -191,7 +194,7 @@ export default function InputTypeIndicator({
                   <Tooltip>
                     <TooltipTrigger
                       className={cn(
-                        'size-6 transition-all ease-in-out hover:scale-105 active:scale-100',
+                        'size-6 cursor-pointer transition-all ease-in-out hover:scale-105 active:scale-100',
                         inputDataTypeOverride !== 'unknown' &&
                           inputDataTypeOption === inputDataType
                           ? 'saturate-100'
@@ -201,7 +204,7 @@ export default function InputTypeIndicator({
                     </TooltipTrigger>
 
                     <TooltipContent className='px-1 py-0.5'>
-                      <p className='text-xs'>
+                      <p className='cursor-default text-xs'>
                         {getInputDataTypeLabel(inputDataTypeOption, 'action')}
                       </p>
                     </TooltipContent>
