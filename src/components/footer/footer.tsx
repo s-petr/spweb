@@ -5,7 +5,7 @@ import ScrollToTopButton from './scroll-to-top'
 export default function Footer() {
   return (
     <footer className='md:mt-auto'>
-      <ScrollToTopButton className='mx-auto w-full' />
+      <ScrollToTopButton />
       <div className='text-muted-foreground grid grid-cols-1 gap-0.5 px-2 pb-2 text-xs md:grid-cols-3'>
         <p className='text-center md:text-left'>
           © {new Date().getFullYear()} Sergei Petrov
