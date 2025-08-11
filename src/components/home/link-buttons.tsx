@@ -11,7 +11,7 @@ import {
   EmailIcon,
   GitHubIcon,
   LinkedInIcon,
-  XIcon
+  TelegramIcon
 } from '../shared/icons'
 
 function ContactLink({
@@ -79,8 +79,8 @@ export default function LinkButtons() {
       <ContactLink href='https://github.com/s-petr' tooltip='GitHub Profile'>
         <GitHubIcon />
       </ContactLink>
-      <ContactLink href='https://x.com/spweb_dev' tooltip='X Profile'>
-        <XIcon />
+      <ContactLink href='https://telegram.me/petr_sergei' tooltip='Telegram'>
+        <TelegramIcon />
       </ContactLink>
       <ContactLink
         obfuscate
