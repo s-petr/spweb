@@ -40,6 +40,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'react-hooks/exhaustive-deps': 'off',
+      'react-hooks/set-state-in-effect': 'off',
       'react/jsx-no-target-blank': 'off',
       'react/jsx-sort-props': [
         'warn',

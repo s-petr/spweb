@@ -51,28 +51,8 @@ export default function Formatter() {
   const [willCleanupString, setWillCleanupString] = useState(false)
   const [willConvertToJson, setWillConvertToJson] = useState(false)
 
-  useEffect(() => {
-    handleInput(input)
-  }, [input, willCleanupString, willConvertToJson])
-
-  useEffect(() => {
-    setOutput('')
-    setInputDataType(inputDataTypeOverride || 'unknown')
-    handleInput(input)
-  }, [inputDataTypeOverride])
-
   const handleSetInputDataType = (value: InputDataType) => {
     !inputDataTypeOverride && setInputDataType(value)
-  }
-
-  function getMarkupHighlighter() {
-    if (
-      (willConvertToJson && ['xml', 'url'].includes(inputDataType)) ||
-      inputDataType.includes('json')
-    )
-      return 'json'
-    if (inputDataType === 'unknown') return undefined
-    return inputDataType
   }
 
   async function handleInput(newInput: string) {
@@ -196,6 +176,26 @@ export default function Formatter() {
         continue
       }
     }
+  }
+
+  useEffect(() => {
+    handleInput(input)
+  }, [input, willCleanupString, willConvertToJson])
+
+  useEffect(() => {
+    setOutput('')
+    setInputDataType(inputDataTypeOverride || 'unknown')
+    handleInput(input)
+  }, [inputDataTypeOverride])
+
+  function getMarkupHighlighter() {
+    if (
+      (willConvertToJson && ['xml', 'url'].includes(inputDataType)) ||
+      inputDataType.includes('json')
+    )
+      return 'json'
+    if (inputDataType === 'unknown') return undefined
+    return inputDataType
   }
 
   const outputPlaceholder = parsingHasFailed
