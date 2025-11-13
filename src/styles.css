@@ -3,9 +3,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-sans), sans-serif;
-  --font-mono: var(--font-mono), monospace;
-
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
@@ -96,8 +93,8 @@
   }
 
   :root {
-    --font-sans: Inter;
-    --font-mono: 'Fira Code';
+    --font-sans: Inter, sans-serif;
+    --font-mono: 'Fira Code', monospace;
 
     --background: 220 0% 95%;
     --foreground: 220 0% 10%;
