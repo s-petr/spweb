@@ -11,7 +11,7 @@
     "url": "https://github.com/s-petr/spweb"
   },
   "homepage": "https://spweb.dev",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -35,7 +35,7 @@
     "clsx": "^2.1.1",
     "fast-xml-parser": "^5.3.3",
     "jsonrepair": "^3.13.2",
-    "lucide-react": "^0.562.0",
+    "lucide-react": "^0.575.0",
     "prettier": "^3.8.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
@@ -58,7 +58,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.26",
+    "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-plugin-unused-imports": "^4.3.0",
     "globals": "^17.0.0",
     "prettier-plugin-organize-imports": "^4.3.0",

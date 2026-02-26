@@ -70,7 +70,7 @@ export default function LinkButtons() {
         <LinkedInIcon />
       </ContactLink>
       <ContactLink
-        href='/cv/Sergei Petrov CV.pdf'
+        href='https://cv.spweb.dev'
         tooltip='Download CV PDF'
         rel='nofollow noreferrer'
         className='plausible-event-name--cv'>

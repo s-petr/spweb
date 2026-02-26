@@ -54,9 +54,9 @@ export default function BulkLinks() {
 
   const fieldsAreValid = Boolean(
     input.length &&
-      !['', '/', '//'].includes(inputSeparator) &&
-      urlTemplate.length &&
-      labelTemplate.length
+    !['', '/', '//'].includes(inputSeparator) &&
+    urlTemplate.length &&
+    labelTemplate.length
   )
 
   return (
