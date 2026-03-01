@@ -43,7 +43,7 @@ SyntaxHighlighter.registerLanguage('html', html)
 SyntaxHighlighter.registerLanguage('xml', xml)
 SyntaxHighlighter.registerLanguage('css', css)
 
-const AI_FORMATTER_URL = 'http://formatter.spweb.dev'
+const AI_FORMATTER_URL = 'https://formatter.spweb.dev'
 
 const formatterApi = getRouteApi('/formatter')
 
