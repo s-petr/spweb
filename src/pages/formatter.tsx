@@ -264,8 +264,8 @@ export default function Formatter() {
         <div className='flex flex-col gap-y-1'>
           <CardTitle>Universal Code Formatter</CardTitle>
           <CardDescription className='text-sm'>
-            Automatically detect and format JS, TS, HTML, CSS, JSON, XML and
-            URLs.
+            Automatically detect and format JS, TS, PHP, HTML, CSS, JSON, XML,
+            YAML and URLs.
           </CardDescription>
         </div>
 
@@ -360,15 +360,16 @@ export default function Formatter() {
                 {inputDataTypeOverride &&
                   inputDataTypeOverride !== 'ai' &&
                   `Could not parse the data as ${getInputDataTypeLabel(inputDataTypeOverride, 'data')}. `}
-                Attempt to format text using an LLM. Can take some time to
+                Attempt to format text using an AI model. Can take some time to
                 complete. Do not send sensitive data. Check and verify the
                 output.
               </p>
               <Button
-                className='w-32 cursor-pointer disabled:cursor-default'
+                className='w-36 cursor-pointer disabled:cursor-default'
                 disabled={isLoading}
                 onClick={() => formatWithAi(input)}>
-                {isLoading && <Spinner className='mr-2' />} Send to AI
+                {isLoading && <Spinner className='mr-2' />}
+                {isLoading ? 'Processing...' : 'Send to AI'}
               </Button>
             </div>
           )}
