@@ -2,12 +2,15 @@ export const inputDataTypes = [
   'unknown',
   'json-valid',
   'json-broken',
+  'yaml',
   'url',
   'xml',
   'js',
   'ts',
+  'php',
   'html',
-  'css'
+  'css',
+  'ai'
 ] as const
 
 export type InputDataType = (typeof inputDataTypes)[number]
@@ -23,6 +26,8 @@ export function getInputDataTypeLabel(
       return labelType === 'data' ? 'Valid JSON' : 'Validate JSON'
     case 'json-broken':
       return labelType === 'data' ? 'Broken JSON' : 'Repair JSON'
+    case 'yaml':
+      return 'YAML'
     case 'url':
       return 'URL Parameters'
     case 'xml':
@@ -31,9 +36,13 @@ export function getInputDataTypeLabel(
       return 'Javascript'
     case 'ts':
       return 'Typescript'
+    case 'php':
+      return 'PHP'
     case 'html':
       return 'HTML'
     case 'css':
       return 'CSS'
+    case 'ai':
+      return 'AI'
   }
 }

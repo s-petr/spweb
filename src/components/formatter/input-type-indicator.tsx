@@ -31,6 +31,32 @@ function JsonLogo({ className }: { className?: string }) {
   )
 }
 
+function YamlLogo({ className }: { className?: string }) {
+  return (
+    <div className={className}>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='-100 0 625 525'>
+        <polygon
+          id='Y'
+          points='235.793 0 143.978 137.674 143.978 224.949 87.702 224.949 87.702 137.674 0 0 63.25 0 119.018 88.646 175.243 0 235.793 0 235.793 0'
+        />
+        <path
+          id='A'
+          fill='#cb171e'
+          d='M330.294,175.451h-101.861l-20.717,50.024h-45.106l95.38,-224.949h46.137l91.51,224.949h-48.2l-17.144,-50.024zm-16.92,-44.911l-31.226,-82.55l-34.837,82.55h66.063z'
+        />
+        <polygon
+          id='M'
+          points='87.701 250.177 87.701 470.647 135.004 470.647 135.004 318.569 184.509 420.789 221.743 420.789 272.939 314.976 272.939 470.602 318.318 470.602 318.318 250.177 256.358 250.177 201.381 349.883 149.021 250.177 87.701 250.177 87.701 250.177'
+        />
+        <polygon
+          id='L'
+          points='512 422.735 395.638 422.735 395.638 250.125 347.442 250.125 347.442 469.647 512 469.647 512 422.737 512 422.735'
+        />
+      </svg>
+    </div>
+  )
+}
+
 function JavascriptLogo({ className }: { className?: string }) {
   return (
     <div className={className}>
@@ -51,6 +77,19 @@ function TypescriptLogo({ className }: { className?: string }) {
         <path
           fill='#0288d1'
           d='M2 2h12v12H2V2m7.14 9.907c.333.653 1.007 1.153 2.06 1.153 1.067 0 1.867-.553 1.867-1.573 0-.94-.54-1.36-1.5-1.774l-.28-.12c-.487-.206-.694-.346-.694-.68 0-.273.207-.486.54-.486.32 0 .534.14.727.486l.873-.58c-.366-.64-.886-.886-1.6-.886-1.006 0-1.653.64-1.653 1.486 0 .92.54 1.354 1.353 1.7l.28.12c.52.227.827.367.827.754 0 .32-.3.553-.767.553-.553 0-.873-.287-1.113-.687l-.92.534M8.667 7.5H5.333v1h1v4.833H7.5V8.5h1.167z'
+        />
+      </svg>
+    </div>
+  )
+}
+
+function PhpLogo({ className }: { className?: string }) {
+  return (
+    <div className={className}>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'>
+        <path
+          fill='#777bb3'
+          d='M 25 12 C 11.542969 12 1 17.710938 1 25 C 1 32.289063 11.542969 38 25 38 C 38.457031 38 49 32.289063 49 25 C 49 17.710938 38.457031 12 25 12 Z M 22.507813 16 L 25.128906 16 L 24.296875 20 L 26.636719 20 C 28.121094 20 29.117188 20.207031 29.683594 20.726563 C 30.238281 21.238281 30.40625 22.078125 30.183594 23.222656 L 29.144531 28 L 26.480469 28 L 27.4375 23.582031 C 27.554688 22.976563 27.507813 22.554688 27.304688 22.332031 C 27.101563 22.109375 26.65625 22 25.988281 22 L 23.890625 22 L 22.625 28 L 20 28 Z M 11 20 L 16.332031 20 C 18.875 20 20.414063 21.703125 19.8125 24.246094 C 19.113281 27.199219 17.238281 28 13.792969 28 L 12.144531 28 L 11.621094 31 L 8.972656 31 Z M 32 20 L 37.332031 20 C 39.875 20 41.414063 21.703125 40.8125 24.246094 C 40.113281 27.199219 38.238281 28 34.792969 28 L 33.144531 28 L 32.621094 31 L 29.972656 31 Z M 13.269531 22 L 12.515625 26 L 14.226563 26 C 15.707031 26 17.082031 25.832031 17.3125 23.625 C 17.398438 22.769531 17.042969 22 15.332031 22 Z M 34.269531 22 L 33.515625 26 L 35.226563 26 C 36.707031 26 38.082031 25.832031 38.3125 23.625 C 38.398438 22.769531 38.042969 22 36.332031 22 Z'
         />
       </svg>
     </div>
@@ -110,6 +149,125 @@ function UrlLogo({ className }: { className?: string }) {
   )
 }
 
+function AiLogo({ className }: { className?: string }) {
+  return (
+    <div className={className}>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        xmlnsXlink='http://www.w3.org/1999/xlink'
+        viewBox='-50 -50 325 325'
+        xmlSpace='preserve'>
+        <g
+          style={{
+            stroke: 'none',
+            strokeWidth: 0,
+            strokeDasharray: 'none',
+            strokeLinecap: 'butt',
+            strokeLinejoin: 'miter',
+            strokeMiterlimit: 10,
+            fill: 'none',
+            fillRule: 'nonzero',
+            opacity: 1
+          }}
+          transform='translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)'>
+          <path
+            d='M 45 18.719 c -1.657 0 -3 -1.343 -3 -3 V 3 c 0 -1.657 1.343 -3 3 -3 c 1.657 0 3 1.343 3 3 v 12.719 C 48 17.376 46.657 18.719 45 18.719 z'
+            fill='#383838'
+          />
+          <path
+            d='M 55.267 18.719 c -1.657 0 -3 -1.343 -3 -3 V 3 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 v 12.719 C 58.267 17.376 56.924 18.719 55.267 18.719 z'
+            fill='#383838'
+          />
+          <path
+            d='M 65.533 18.719 c -1.657 0 -3 -1.343 -3 -3 V 3 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 v 12.719 C 68.533 17.376 67.19 18.719 65.533 18.719 z'
+            fill='#383838'
+          />
+          <path
+            d='M 34.733 18.719 c -1.657 0 -3 -1.343 -3 -3 V 3 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 v 12.719 C 37.733 17.376 36.39 18.719 34.733 18.719 z'
+            fill='#383838'
+          />
+          <path
+            d='M 24.467 18.719 c -1.657 0 -3 -1.343 -3 -3 V 3 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 v 12.719 C 27.467 17.376 26.124 18.719 24.467 18.719 z'
+            fill='#383838'
+          />
+
+          <path
+            d='M 45 90 c -1.657 0 -3 -1.343 -3 -3 V 74.281 c 0 -1.657 1.343 -3 3 -3 c 1.657 0 3 1.343 3 3 V 87 C 48 88.657 46.657 90 45 90 z'
+            fill='#383838'
+          />
+          <path
+            d='M 55.267 90 c -1.657 0 -3 -1.343 -3 -3 V 74.281 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 V 87 C 58.267 88.657 56.924 90 55.267 90 z'
+            fill='#383838'
+          />
+          <path
+            d='M 65.533 90 c -1.657 0 -3 -1.343 -3 -3 V 74.281 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 V 87 C 68.533 88.657 67.19 90 65.533 90 z'
+            fill='#383838'
+          />
+          <path
+            d='M 34.733 90 c -1.657 0 -3 -1.343 -3 -3 V 74.281 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 V 87 C 37.733 88.657 36.39 90 34.733 90 z'
+            fill='#383838'
+          />
+          <path
+            d='M 24.467 90 c -1.657 0 -3 -1.343 -3 -3 V 74.281 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 V 87 C 27.467 88.657 26.124 90 24.467 90 z'
+            fill='#383838'
+          />
+
+          <path
+            d='M 15.719 48 H 3 c -1.657 0 -3 -1.343 -3 -3 c 0 -1.657 1.343 -3 3 -3 h 12.719 c 1.657 0 3 1.343 3 3 C 18.719 46.657 17.376 48 15.719 48 z'
+            fill='#383838'
+          />
+          <path
+            d='M 15.719 37.733 H 3 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 h 12.719 c 1.657 0 3 1.343 3 3 S 17.376 37.733 15.719 37.733 z'
+            fill='#383838'
+          />
+          <path
+            d='M 15.719 27.467 H 3 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 h 12.719 c 1.657 0 3 1.343 3 3 S 17.376 27.467 15.719 27.467 z'
+            fill='#383838'
+          />
+          <path
+            d='M 15.719 58.267 H 3 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 h 12.719 c 1.657 0 3 1.343 3 3 S 17.376 58.267 15.719 58.267 z'
+            fill='#383838'
+          />
+          <path
+            d='M 15.719 68.533 H 3 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 h 12.719 c 1.657 0 3 1.343 3 3 S 17.376 68.533 15.719 68.533 z'
+            fill='#383838'
+          />
+
+          <path
+            d='M 87 48 H 74.281 c -1.657 0 -3 -1.343 -3 -3 c 0 -1.657 1.343 -3 3 -3 H 87 c 1.657 0 3 1.343 3 3 C 90 46.657 88.657 48 87 48 z'
+            fill='#383838'
+          />
+          <path
+            d='M 87 37.733 H 74.281 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 H 87 c 1.657 0 3 1.343 3 3 S 88.657 37.733 87 37.733 z'
+            fill='#383838'
+          />
+          <path
+            d='M 87 27.467 H 74.281 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 H 87 c 1.657 0 3 1.343 3 3 S 88.657 27.467 87 27.467 z'
+            fill='#383838'
+          />
+          <path
+            d='M 87 58.267 H 74.281 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 H 87 c 1.657 0 3 1.343 3 3 S 88.657 58.267 87 58.267 z'
+            fill='#383838'
+          />
+          <path
+            d='M 87 68.533 H 74.281 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 H 87 c 1.657 0 3 1.343 3 3 S 88.657 68.533 87 68.533 z'
+            fill='#383838'
+          />
+
+          <path
+            d='M 74.281 12.719 H 15.719 c -1.657 0 -3 1.343 -3 3 v 58.562 c 0 1.657 1.343 3 3 3 h 58.562 c 1.657 0 3 -1.343 3 -3 V 15.719 C 77.281 14.063 75.938 12.719 74.281 12.719 z M 48.111 59.046 c 0 1.657 -1.343 3 -3 3 c -1.657 0 -3 -1.343 -3 -3 v -9.752 H 30.675 v 9.752 c 0 1.657 -1.343 3 -3 3 s -3 -1.343 -3 -3 V 39.672 c 0 -6.461 5.257 -11.718 11.718 -11.718 s 11.718 5.257 11.718 11.718 V 59.046 z M 62.325 56.046 c 1.657 0 3 1.343 3 3 s -1.343 3 -3 3 h -7.697 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 h 0.849 V 33.954 h -0.849 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 h 7.697 c 1.657 0 3 1.343 3 3 s -1.343 3 -3 3 h -0.849 v 22.092 H 62.325 z'
+            fill='#383838'
+          />
+          <path
+            d='M 36.393 33.954 c -3.153 0 -5.718 2.565 -5.718 5.718 v 3.622 h 11.437 v -3.622 C 42.111 36.52 39.546 33.954 36.393 33.954 z'
+            fill='#383838'
+          />
+        </g>
+      </svg>
+    </div>
+  )
+}
+
 function UnknownLogo({ className }: { className?: string }) {
   return (
     <div className={className}>
@@ -123,16 +281,19 @@ function UnknownLogo({ className }: { className?: string }) {
   )
 }
 
-const logoMappings: Record<InputDataType, React.JSX> = {
+const logoMappings: Record<InputDataType, React.JSX.Element> = {
   unknown: <UnknownLogo />,
   'json-valid': <JsonLogo className='fill-green-600' />,
   'json-broken': <JsonLogo className='fill-red-600' />,
+  yaml: <YamlLogo />,
   url: <UrlLogo />,
   xml: <XmlLogo />,
   js: <JavascriptLogo />,
   ts: <TypescriptLogo />,
+  php: <PhpLogo />,
   html: <HtmlLogo />,
-  css: <CssLogo />
+  css: <CssLogo />,
+  ai: <AiLogo />
 }
 
 export default function InputTypeIndicator({
@@ -177,42 +338,42 @@ export default function InputTypeIndicator({
       </PopoverTrigger>
       <PopoverContent className='w-fit p-2'>
         <div className='grid grid-cols-3 gap-2'>
-          {(Object.entries(logoMappings) as [InputDataType, React.JSX][]).map(
-            ([inputDataTypeOption, logo], index) => (
-              <Link
-                key={`${inputDataTypeOption}-${index}`}
-                aria-label={`Format as ${getInputDataTypeLabel(inputDataTypeOption, 'action')}`}
-                to='/formatter'
-                search={
-                  inputDataTypeOption === 'unknown'
-                    ? undefined
-                    : { type: inputDataTypeOption }
-                }
-                className='size-6 transition-all ease-in-out hover:scale-105 active:scale-100'
-                onClick={() => setMenuIsOpen(false)}>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger
-                      className={cn(
-                        'size-6 cursor-pointer transition-all ease-in-out hover:scale-105 active:scale-100',
-                        inputDataTypeOverride !== 'unknown' &&
-                          inputDataTypeOption === inputDataType
-                          ? 'saturate-100'
-                          : 'saturate-25'
-                      )}>
-                      {logo}
-                    </TooltipTrigger>
+          {(
+            Object.entries(logoMappings) as [InputDataType, React.JSX.Element][]
+          ).map(([inputDataTypeOption, logo], index) => (
+            <Link
+              key={`${inputDataTypeOption}-${index}`}
+              aria-label={`Format as ${getInputDataTypeLabel(inputDataTypeOption, 'action')}`}
+              to='/formatter'
+              search={
+                inputDataTypeOption === 'unknown'
+                  ? undefined
+                  : { type: inputDataTypeOption }
+              }
+              className='size-6 transition-all ease-in-out hover:scale-105 active:scale-100'
+              onClick={() => setMenuIsOpen(false)}>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger
+                    className={cn(
+                      'size-6 cursor-pointer transition-all ease-in-out hover:scale-105 active:scale-100',
+                      inputDataTypeOverride !== 'unknown' &&
+                        inputDataTypeOption === inputDataType
+                        ? 'saturate-100'
+                        : 'saturate-25'
+                    )}>
+                    {logo}
+                  </TooltipTrigger>
 
-                    <TooltipContent className='px-1 py-0.5'>
-                      <p className='cursor-default text-xs'>
-                        {getInputDataTypeLabel(inputDataTypeOption, 'action')}
-                      </p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </Link>
-            )
-          )}
+                  <TooltipContent className='px-1 py-0.5'>
+                    <p className='cursor-default text-xs'>
+                      {getInputDataTypeLabel(inputDataTypeOption, 'action')}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </Link>
+          ))}
         </div>
       </PopoverContent>
     </Popover>

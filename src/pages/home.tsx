@@ -9,8 +9,8 @@ export default function Home() {
 
         <section className='flex max-w-[800px] flex-col gap-8 text-justify text-lg'>
           <p>
-            I am a Web Developer and IT Operations specialist with over five
-            years of experience building, testing and maintaining online payment
+            I am a Web Developer and IT Operations specialist with over 6 years
+            of experience building, testing and maintaining online payment
             systems. With a proven track record of resolving complex technical
             challenges, I have played key roles in product development, project
             management and technical support.

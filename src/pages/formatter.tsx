@@ -1,5 +1,6 @@
 import InputTypeIndicator from '@/components/formatter/input-type-indicator'
 import CopyButton from '@/components/shared/copy-button'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -9,6 +10,7 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
+import { Spinner } from '@/components/ui/spinner'
 import { Switch } from '@/components/ui/switch'
 import { Textarea } from '@/components/ui/textarea'
 import { parseHtml } from '@/lib/html-parser'
@@ -26,16 +28,22 @@ import css from 'react-syntax-highlighter/dist/esm/languages/hljs/css'
 import html from 'react-syntax-highlighter/dist/esm/languages/hljs/htmlbars'
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript'
 import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json'
+import php from 'react-syntax-highlighter/dist/esm/languages/hljs/php'
 import ts from 'react-syntax-highlighter/dist/esm/languages/hljs/typescript'
 import xml from 'react-syntax-highlighter/dist/esm/languages/hljs/xml'
+import yaml from 'react-syntax-highlighter/dist/esm/languages/hljs/yaml'
 import theme from 'react-syntax-highlighter/dist/esm/styles/hljs/stackoverflow-light'
 
 SyntaxHighlighter.registerLanguage('json', json)
+SyntaxHighlighter.registerLanguage('yaml', yaml)
 SyntaxHighlighter.registerLanguage('js', js)
 SyntaxHighlighter.registerLanguage('ts', ts)
+SyntaxHighlighter.registerLanguage('php', php)
 SyntaxHighlighter.registerLanguage('html', html)
 SyntaxHighlighter.registerLanguage('xml', xml)
 SyntaxHighlighter.registerLanguage('css', css)
+
+const AI_FORMATTER_URL = 'http://formatter.spweb.dev'
 
 const formatterApi = getRouteApi('/formatter')
 
@@ -44,19 +52,54 @@ export default function Formatter() {
 
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
-  const [parsingHasFailed, setParsingHasFailed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [formattingIsSuccess, setFormattingIsSuccess] = useState(false)
   const [inputDataType, setInputDataType] = useState<InputDataType>(
     inputDataTypeOverride || 'unknown'
   )
   const [willCleanupString, setWillCleanupString] = useState(false)
   const [willConvertToJson, setWillConvertToJson] = useState(false)
 
+  async function formatWithAi(input: string) {
+    setInputDataType('ai')
+    setIsLoading(true)
+
+    try {
+      const res = await fetch(AI_FORMATTER_URL, {
+        method: 'POST',
+        headers: { 'content-type': 'text/plain' },
+        body: input
+      })
+
+      if (!res.ok) {
+        const errorData = await res.text()
+        throw new Error(errorData)
+      }
+
+      const data = await res.text()
+
+      if (!data || !data.length)
+        throw new Error('Invalid or empty data in response.')
+
+      setFormattingIsSuccess(true)
+      setOutput(data)
+    } catch (error) {
+      if (error instanceof Error) {
+        setOutput(`Error formatting with AI: ${error.message}`)
+      } else {
+        setOutput('Error formatting with AI.')
+      }
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const handleSetInputDataType = (value: InputDataType) => {
     !inputDataTypeOverride && setInputDataType(value)
   }
 
   async function handleInput(newInput: string) {
-    setParsingHasFailed(false)
+    setFormattingIsSuccess(false)
 
     if (newInput === '') {
       handleSetInputDataType('unknown')
@@ -118,6 +161,14 @@ export default function Formatter() {
         filters: ['ts']
       },
       {
+        run: async () => {
+          const output = await parseWithPrettier(newInput, 'yaml')
+          setOutput(output)
+          handleSetInputDataType('yaml')
+        },
+        filters: ['yaml']
+      },
+      {
         run: () => handleParseJson(jsonrepair(newInput), 'json-broken'),
         filters: ['json-broken']
       },
@@ -142,6 +193,14 @@ export default function Formatter() {
         filters: ['css']
       },
       {
+        run: async () => {
+          const output = await parseWithPrettier(newInput, 'php')
+          setOutput(output)
+          handleSetInputDataType('php')
+        },
+        filters: ['php']
+      },
+      {
         run: () => handleParseJson(jsonrepair(`{${newInput}}`), 'json-broken'),
         filters: ['json-broken']
       },
@@ -151,11 +210,10 @@ export default function Formatter() {
       },
       {
         run: () => {
-          handleSetInputDataType('unknown')
+          handleSetInputDataType('ai')
           setOutput('')
-          setParsingHasFailed(true)
         },
-        filters: []
+        filters: ['ai']
       }
     ]
 
@@ -168,11 +226,13 @@ export default function Formatter() {
             action.filters.includes(inputDataTypeOverride))
         ) {
           await action.run()
+          if (inputDataTypeOverride !== 'ai') setFormattingIsSuccess(true)
           break
         } else {
           continue
         }
       } catch {
+        setFormattingIsSuccess(false)
         continue
       }
     }
@@ -198,13 +258,6 @@ export default function Formatter() {
     return inputDataType
   }
 
-  const outputPlaceholder = parsingHasFailed
-    ? 'Could not parse data' +
-      (inputDataTypeOverride
-        ? ` as ${getInputDataTypeLabel(inputDataTypeOverride)}`
-        : '')
-    : ''
-
   return (
     <Card className='from-muted/75 to-card size-full space-y-2 border-none bg-linear-to-b p-2'>
       <CardHeader className='flex h-fit justify-between gap-x-4 p-2 md:flex-row md:items-center'>
@@ -220,15 +273,21 @@ export default function Formatter() {
           <div className='flex flex-col items-start md:items-end'>
             <div className='flex flex-row-reverse items-center gap-x-1 md:flex-row'>
               <Label
-                className='cursor-pointer text-right text-xs'
+                className={cn(
+                  'text-right text-xs',
+                  inputDataType === 'ai'
+                    ? 'text-muted-foreground cursor-auto select-none'
+                    : 'cursor-pointer'
+                )}
                 htmlFor='cleanup-string'>
                 Clean up URL-encoded text
               </Label>
               <Switch
                 id='cleanup-string'
                 aria-label='cleanup-string'
-                className='scale-75'
+                className='scale-75 disabled:cursor-auto'
                 checked={willCleanupString}
+                disabled={inputDataType === 'ai'}
                 onCheckedChange={() =>
                   setWillCleanupString((current) => !current)
                 }
@@ -236,15 +295,21 @@ export default function Formatter() {
             </div>
             <div className='flex flex-row-reverse items-center gap-x-1 md:flex-row'>
               <Label
-                className='cursor-pointer text-right text-xs'
+                className={cn(
+                  'text-right text-xs',
+                  inputDataType === 'ai'
+                    ? 'text-muted-foreground cursor-auto select-none'
+                    : 'cursor-pointer'
+                )}
                 htmlFor='convert-to-json'>
                 Convert XML and URLs to JSON
               </Label>
               <Switch
                 id='convert-to-json'
                 aria-label='convert-to-json'
-                className='scale-75'
+                className='scale-75 disabled:cursor-auto'
                 checked={willConvertToJson}
+                disabled={inputDataType === 'ai'}
                 onCheckedChange={() =>
                   setWillConvertToJson((current) => !current)
                 }
@@ -288,12 +353,32 @@ export default function Formatter() {
               className='absolute top-4 right-6 z-20 size-6'
             />
           )}
+
+          {!formattingIsSuccess && !!input?.length && (
+            <div className='absolute top-1/2 z-20 flex w-full -translate-y-1/2 flex-col items-center gap-2'>
+              <p className='text-muted-foreground w-1/2 text-center text-xs select-none'>
+                {inputDataTypeOverride &&
+                  inputDataTypeOverride !== 'ai' &&
+                  `Could not parse the data as ${getInputDataTypeLabel(inputDataTypeOverride, 'data')}. `}
+                Attempt to format text using an LLM. Can take some time to
+                complete. Do not send sensitive data. Check and verify the
+                output.
+              </p>
+              <Button
+                className='w-32 cursor-pointer disabled:cursor-default'
+                disabled={isLoading}
+                onClick={() => formatWithAi(input)}>
+                {isLoading && <Spinner className='mr-2' />} Send to AI
+              </Button>
+            </div>
+          )}
+
           <SyntaxHighlighter
             className='bg-background absolute size-full overflow-y-auto rounded-md border text-xs break-all whitespace-pre-wrap'
             language={getMarkupHighlighter()}
             wrapLongLines={true}
             style={theme}>
-            {output || outputPlaceholder}
+            {output || ''}
           </SyntaxHighlighter>
         </div>
       </CardContent>

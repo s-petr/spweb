@@ -10,12 +10,7 @@ A modern, responsive personal website and web development toolkit built with Rea
 
 - **Home Page**: Personal profile and links page
 - **Learning Resources**: Curated collection of web development learning materials
-- **Code Formatter**: Universal formatter supporting popular code formats including:
-  - JavaScript/TypeScript
-  - URL query strings
-  - HTML/CSS
-  - JSON
-  - XML
+- **Code Formatter**: Universal text formatter/prettier supporting popular data formats. Automatic formatting of text using AI supported via a backend function call.
 - **Timestamp Tool**: Convert and compare dates and Unix timestamps
 - **Bulk Link Builder**: Generate lists of hyperlinks from templates
 
