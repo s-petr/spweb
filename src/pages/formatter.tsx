@@ -16,6 +16,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { parseHtml } from '@/lib/html-parser'
 import { getInputDataTypeLabel, InputDataType } from '@/lib/input-type-label'
 import { parseJson } from '@/lib/json-parser'
+import { parsePhp } from '@/lib/php-parser'
 import { parseWithPrettier } from '@/lib/prettier'
 import { cn } from '@/lib/shadcn'
 import { parseUrl } from '@/lib/url-parser'
@@ -126,6 +127,14 @@ export default function Formatter() {
       },
       {
         run: async () => {
+          const output = await parsePhp(newInput, willCleanupString)
+          setOutput(output)
+          handleSetInputDataType('php')
+        },
+        filters: ['php']
+      },
+      {
+        run: async () => {
           const output = await parseHtml(newInput, willCleanupString)
           setOutput(output)
           handleSetInputDataType('html')
@@ -161,18 +170,6 @@ export default function Formatter() {
         filters: ['ts']
       },
       {
-        run: async () => {
-          const output = await parseWithPrettier(newInput, 'yaml')
-          setOutput(output)
-          handleSetInputDataType('yaml')
-        },
-        filters: ['yaml']
-      },
-      {
-        run: () => handleParseJson(jsonrepair(newInput), 'json-broken'),
-        filters: ['json-broken']
-      },
-      {
         run: () => {
           const output = parseUrl(
             newInput,
@@ -185,6 +182,10 @@ export default function Formatter() {
         filters: ['url']
       },
       {
+        run: () => handleParseJson(jsonrepair(newInput), 'json-broken'),
+        filters: ['json-broken']
+      },
+      {
         run: async () => {
           const output = await parseWithPrettier(newInput, 'css')
           setOutput(output)
@@ -194,19 +195,11 @@ export default function Formatter() {
       },
       {
         run: async () => {
-          const output = await parseWithPrettier(newInput, 'php')
+          const output = await parseWithPrettier(newInput, 'yaml')
           setOutput(output)
-          handleSetInputDataType('php')
+          handleSetInputDataType('yaml')
         },
-        filters: ['php']
-      },
-      {
-        run: () => handleParseJson(jsonrepair(`{${newInput}}`), 'json-broken'),
-        filters: ['json-broken']
-      },
-      {
-        run: () => handleParseJson(jsonrepair(`[${newInput}]`), 'unknown'),
-        filters: ['json-broken']
+        filters: ['yaml']
       },
       {
         run: () => {
@@ -226,7 +219,7 @@ export default function Formatter() {
             action.filters.includes(inputDataTypeOverride))
         ) {
           await action.run()
-          if (inputDataTypeOverride !== 'ai') setFormattingIsSuccess(true)
+          if (!action.filters.includes('ai')) setFormattingIsSuccess(true)
           break
         } else {
           continue
@@ -254,7 +247,7 @@ export default function Formatter() {
       inputDataType.includes('json')
     )
       return 'json'
-    if (inputDataType === 'unknown') return undefined
+    if (['unknown', 'ai'].includes(inputDataType)) return undefined
     return inputDataType
   }
 
@@ -336,11 +329,12 @@ export default function Formatter() {
             spellCheck='false'
             className={cn(
               'h-full resize-none font-mono text-xs',
-              input.length
-                ? ['unknown', 'json-broken'].includes(inputDataType)
-                  ? 'focus-visible:ring-destructive/50'
-                  : 'focus-visible:ring-green-700/50'
-                : ''
+              input.length &&
+                inputDataType === 'json-valid' &&
+                'focus-visible:ring-green-700/50',
+              input.length &&
+                inputDataType === 'json-broken' &&
+                'focus-visible:ring-destructive/50'
             )}
             onChange={(e) => setInput(e.target.value)}
           />
@@ -366,6 +360,7 @@ export default function Formatter() {
               </p>
               <Button
                 className='w-36 cursor-pointer disabled:cursor-default'
+                size='sm'
                 disabled={isLoading}
                 onClick={() => formatWithAi(input)}>
                 {isLoading && <Spinner className='mr-2' />}

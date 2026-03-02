@@ -1,7 +1,12 @@
 import { cleanUpString } from './cleanup-string'
 
 const validateQueryParams = (params: string) => {
-  if (!params.split('&').some((param) => param.split('=').length === 2))
+  const numLineBreaks = params.match(/\n/g)?.length ?? 0
+
+  if (
+    !params.split('&').some((param) => param.split('=').length === 2) ||
+    numLineBreaks > 3
+  )
     throw new Error('String is not valid URL params')
 }
 
