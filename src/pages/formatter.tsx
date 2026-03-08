@@ -23,7 +23,7 @@ import { parseUrl } from '@/lib/url-parser'
 import { parseXml } from '@/lib/xml-parser'
 import { getRouteApi } from '@tanstack/react-router'
 import { jsonrepair } from 'jsonrepair'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import css from 'react-syntax-highlighter/dist/esm/languages/hljs/css'
 import html from 'react-syntax-highlighter/dist/esm/languages/hljs/htmlbars'
@@ -45,6 +45,7 @@ SyntaxHighlighter.registerLanguage('xml', xml)
 SyntaxHighlighter.registerLanguage('css', css)
 
 const AI_FORMATTER_URL = 'https://formatter.spweb.dev'
+const DEBOUNCE_TIME_MS = 300
 
 const formatterApi = getRouteApi('/formatter')
 
@@ -54,6 +55,9 @@ export default function Formatter() {
   const [status, setStatus] = useState<
     'ready' | 'formatting' | 'done' | 'failed'
   >('ready')
+  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
+  const [showAiButton, setShowAiButton] = useState(false)
+  const [showCopyButton, setShowCopyButton] = useState(false)
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [inputDataType, setInputDataType] = useState<InputDataType>(
@@ -64,6 +68,8 @@ export default function Formatter() {
 
   async function formatWithAi(input: string) {
     setStatus('formatting')
+    setShowAiButton(false)
+    setShowLoadingSpinner(true)
 
     try {
       const res = await fetch(AI_FORMATTER_URL, {
@@ -98,133 +104,180 @@ export default function Formatter() {
     !inputDataTypeOverride && setInputDataType(value)
   }
 
-  async function handleInput(newInput: string) {
-    if (newInput.trim() === '') {
-      setOutput('')
-      handleSetInputDataType('unknown')
-      setStatus('ready')
-      return
-    }
+  const abortControllerRef = useRef<AbortController | null>(null)
 
-    setStatus('formatting')
+  const handleInput = useCallback(
+    async (newInput: string) => {
+      abortControllerRef.current?.abort()
+      const controller = new AbortController()
+      abortControllerRef.current = controller
 
-    const handleParseJson = (
-      input: string,
-      inputDataTypeSetting: InputDataType = 'json-valid'
-    ): [InputDataType, string] => {
-      const output = parseJson(input, willCleanupString)
-      return [inputDataTypeSetting, output]
-    }
-
-    const formattingSequence: {
-      run: () => [InputDataType, string] | Promise<[InputDataType, string]>
-      filters: InputDataType[]
-    }[] = [
-      {
-        run: () => handleParseJson(newInput),
-        filters: ['json-valid', 'json-broken']
-      },
-      {
-        run: async () => {
-          const output = await parsePhp(newInput, willCleanupString)
-          return ['php', output]
-        },
-        filters: ['php']
-      },
-      {
-        run: async () => {
-          const output = await parseHtml(newInput, willCleanupString)
-          return ['html', output]
-        },
-        filters: ['html']
-      },
-      {
-        run: async () => {
-          const output = await parseXml(
-            newInput,
-            willCleanupString,
-            willConvertToJson
-          )
-          return ['xml', output]
-        },
-        filters: ['xml']
-      },
-      {
-        run: async () => {
-          const output = await parseWithPrettier(newInput, 'babel')
-          return ['js', output]
-        },
-        filters: ['js']
-      },
-      {
-        run: async () => {
-          const output = await parseWithPrettier(newInput, 'typescript')
-          return ['ts', output]
-        },
-        filters: ['ts']
-      },
-      {
-        run: () => {
-          const output = parseUrl(
-            newInput,
-            willCleanupString,
-            willConvertToJson
-          )
-          return ['url', output]
-        },
-        filters: ['url']
-      },
-      {
-        run: () => handleParseJson(jsonrepair(newInput), 'json-broken'),
-        filters: ['json-broken']
-      },
-      {
-        run: async () => {
-          const output = await parseWithPrettier(newInput, 'css')
-          return ['css', output]
-        },
-        filters: ['css']
-      },
-      {
-        run: async () => {
-          const output = await parseWithPrettier(newInput, 'yaml')
-          return ['yaml', output]
-        },
-        filters: ['yaml']
-      },
-      {
-        run: () => ['ai', ''],
-        filters: ['ai']
+      if (newInput.trim() === '') {
+        setOutput('')
+        handleSetInputDataType('unknown')
+        setShowAiButton(false)
+        setShowCopyButton(false)
+        setStatus('ready')
+        return
       }
-    ]
 
-    for (const action of formattingSequence) {
-      try {
-        if (
-          !inputDataTypeOverride ||
-          !action.filters.length ||
-          (inputDataTypeOverride &&
-            action.filters.includes(inputDataTypeOverride))
-        ) {
-          const [dataType, output] = await action.run()
-          setOutput(output)
-          handleSetInputDataType(dataType)
-          setStatus(action.filters.includes('ai') ? 'ready' : 'done')
-          return
-        } else {
+      setStatus('formatting')
+
+      const handleParseJson = (
+        input: string,
+        inputDataTypeSetting: InputDataType = 'json-valid'
+      ): [InputDataType, string] => {
+        const output = parseJson(input, willCleanupString)
+        return [inputDataTypeSetting, output]
+      }
+
+      const formattingSequence: {
+        run: () => [InputDataType, string] | Promise<[InputDataType, string]>
+        filters: InputDataType[]
+      }[] = [
+        {
+          run: () => handleParseJson(newInput),
+          filters: ['json-valid', 'json-broken']
+        },
+        {
+          run: async () => {
+            const output = await parsePhp(newInput, willCleanupString)
+            return ['php', output]
+          },
+          filters: ['php']
+        },
+        {
+          run: async () => {
+            const output = await parseHtml(newInput, willCleanupString)
+            return ['html', output]
+          },
+          filters: ['html']
+        },
+        {
+          run: async () => {
+            const output = await parseXml(
+              newInput,
+              willCleanupString,
+              willConvertToJson
+            )
+            return ['xml', output]
+          },
+          filters: ['xml']
+        },
+        {
+          run: async () => {
+            const output = await parseWithPrettier(newInput, 'babel')
+            return ['js', output]
+          },
+          filters: ['js']
+        },
+        {
+          run: async () => {
+            const output = await parseWithPrettier(newInput, 'typescript')
+            return ['ts', output]
+          },
+          filters: ['ts']
+        },
+        {
+          run: () => {
+            const output = parseUrl(
+              newInput,
+              willCleanupString,
+              willConvertToJson
+            )
+            return ['url', output]
+          },
+          filters: ['url']
+        },
+        {
+          run: () => handleParseJson(jsonrepair(newInput), 'json-broken'),
+          filters: ['json-broken']
+        },
+        {
+          run: async () => {
+            const output = await parseWithPrettier(newInput, 'css')
+            return ['css', output]
+          },
+          filters: ['css']
+        },
+        {
+          run: async () => {
+            const output = await parseWithPrettier(newInput, 'yaml')
+            return ['yaml', output]
+          },
+          filters: ['yaml']
+        },
+        {
+          run: () => ['ai', ''],
+          filters: ['ai']
+        }
+      ]
+
+      for (const action of formattingSequence) {
+        try {
+          if (
+            !inputDataTypeOverride ||
+            !action.filters.length ||
+            (inputDataTypeOverride &&
+              action.filters.includes(inputDataTypeOverride))
+          ) {
+            const [dataType, output] = await action.run()
+            if (!controller.signal.aborted) {
+              setOutput(output)
+              handleSetInputDataType(dataType)
+              setStatus(action.filters.includes('ai') ? 'ready' : 'done')
+            }
+            return
+          } else {
+            continue
+          }
+        } catch {
           continue
         }
-      } catch {
-        continue
       }
-    }
-    setOutput('')
-    setStatus('failed')
-  }
+      if (!controller.signal.aborted) {
+        setOutput('')
+        setStatus('failed')
+      }
+    },
+    [willCleanupString, willConvertToJson, inputDataTypeOverride]
+  )
 
   useEffect(() => {
-    handleInput(input)
-  }, [input, willCleanupString, willConvertToJson])
+    const timer = setTimeout(() => {
+      handleInput(input)
+    }, DEBOUNCE_TIME_MS)
+    return () => clearTimeout(timer)
+  }, [input, willCleanupString, willConvertToJson, handleInput])
+
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = []
+    const shouldShowAiButton =
+      !!input.trim().length &&
+      (status === 'failed' || (status === 'ready' && inputDataType === 'ai'))
+
+    if (!shouldShowAiButton) {
+      timers.push(setTimeout(() => setShowAiButton(false), DEBOUNCE_TIME_MS))
+    } else {
+      setShowAiButton(true)
+    }
+
+    if (status === 'formatting') {
+      timers.push(
+        setTimeout(() => setShowLoadingSpinner(true), DEBOUNCE_TIME_MS)
+      )
+    } else {
+      setShowLoadingSpinner(false)
+    }
+
+    if (status !== 'done') {
+      timers.push(setTimeout(() => setShowCopyButton(false), DEBOUNCE_TIME_MS))
+    } else {
+      setShowCopyButton(true)
+    }
+
+    return () => timers.forEach(clearTimeout)
+  }, [status])
 
   useEffect(() => {
     setOutput('')
@@ -243,7 +296,7 @@ export default function Formatter() {
   }
 
   return (
-    <Card className='from-muted/75 to-card size-full space-y-2 border-none bg-linear-to-b p-2'>
+    <Card className='from-muted/75 to-card size-full space-y-0 border-none bg-linear-to-b p-2'>
       <CardHeader className='flex h-fit justify-between gap-x-4 p-2 md:flex-row md:items-center'>
         <div className='flex flex-col gap-y-1'>
           <CardTitle>Universal Code Formatter</CardTitle>
@@ -259,7 +312,7 @@ export default function Formatter() {
               <Label
                 className={cn(
                   'text-right text-xs',
-                  status !== 'ready' || inputDataType === 'ai'
+                  status === 'failed' || inputDataType === 'ai'
                     ? 'text-muted-foreground cursor-auto select-none'
                     : 'cursor-pointer'
                 )}
@@ -271,7 +324,7 @@ export default function Formatter() {
                 aria-label='cleanup-string'
                 className='scale-75 disabled:cursor-auto'
                 checked={willCleanupString}
-                disabled={status !== 'ready' || inputDataType === 'ai'}
+                disabled={status === 'failed' || inputDataType === 'ai'}
                 onCheckedChange={() =>
                   setWillCleanupString((current) => !current)
                 }
@@ -281,7 +334,7 @@ export default function Formatter() {
               <Label
                 className={cn(
                   'text-right text-xs',
-                  status !== 'ready' || inputDataType === 'ai'
+                  status === 'failed' || inputDataType === 'ai'
                     ? 'text-muted-foreground cursor-auto select-none'
                     : 'cursor-pointer'
                 )}
@@ -293,7 +346,7 @@ export default function Formatter() {
                 aria-label='convert-to-json'
                 className='scale-75 disabled:cursor-auto'
                 checked={willConvertToJson}
-                disabled={status !== 'ready' || inputDataType === 'ai'}
+                disabled={status === 'failed' || inputDataType === 'ai'}
                 onCheckedChange={() =>
                   setWillConvertToJson((current) => !current)
                 }
@@ -332,36 +385,34 @@ export default function Formatter() {
         </div>
 
         <div className='relative'>
-          {status === 'done' && (
+          {showCopyButton && (
             <CopyButton
               output={output}
-              className='absolute top-4 right-6 z-20 size-6'
+              className='absolute top-4 right-4 z-20'
             />
           )}
 
-          {!!input.trim().length &&
-            (status === 'failed' ||
-              (status === 'ready' && inputDataType === 'ai')) && (
-              <div className='absolute top-1/2 z-20 flex w-full -translate-y-1/2 flex-col items-center gap-2'>
-                <p className='text-muted-foreground w-1/2 text-center text-xs select-none'>
-                  {inputDataTypeOverride &&
-                    inputDataTypeOverride !== 'ai' &&
-                    `Could not parse the data as ${getInputDataTypeLabel(inputDataTypeOverride, 'data')}. `}
-                  Attempt to format text using an AI model. Can take some time
-                  to complete. Do not send sensitive data. Check and verify the
-                  output.
-                </p>
-                <Button
-                  className='h-8 w-28 cursor-pointer text-xs disabled:cursor-default'
-                  size='sm'
-                  onClick={() => formatWithAi(input)}>
-                  Send to AI
-                </Button>
-              </div>
-            )}
+          {showAiButton && (
+            <div className='absolute top-1/2 z-20 flex w-full -translate-y-1/2 flex-col items-center gap-2'>
+              <p className='text-muted-foreground w-1/2 text-center text-xs select-none'>
+                {inputDataTypeOverride &&
+                  inputDataTypeOverride !== 'ai' &&
+                  `Could not parse the data as ${getInputDataTypeLabel(inputDataTypeOverride, 'data')}. `}
+                Attempt to format text using an AI model. Can take some time to
+                complete. Do not send sensitive data. Check and verify the
+                output.
+              </p>
+              <Button
+                className='h-8 w-28 cursor-pointer text-xs disabled:cursor-default'
+                size='sm'
+                onClick={() => formatWithAi(input)}>
+                Send to AI
+              </Button>
+            </div>
+          )}
 
-          {status === 'formatting' && (
-            <div className='bg-card absolute top-1/2 left-1/2 z-20 flex h-8 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-md p-2'>
+          {showLoadingSpinner && (
+            <div className='bg-card absolute top-1/2 left-1/2 z-20 flex h-8 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-1 rounded-md p-2'>
               <Spinner className='text-muted-foreground' />
               <p className='text-muted-foreground text-center text-xs select-none'>
                 Formatting...

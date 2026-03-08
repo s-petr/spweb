@@ -25,7 +25,7 @@ function ClipBoardReady({ className }: { className: string }) {
   )
 }
 
-function ClipobardCopied({ className }: { className: string }) {
+function ClipboardCopied({ className }: { className: string }) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -77,9 +77,9 @@ export default function CopyButton({
               className='bg-background rounded-md p-0.5'
               onClick={handleCopy}>
               {copied ? (
-                <ClipobardCopied className='size-6 cursor-default' />
+                <ClipboardCopied className='size-5 cursor-default' />
               ) : (
-                <ClipBoardReady className='size-6 cursor-pointer' />
+                <ClipBoardReady className='size-5 cursor-pointer' />
               )}
             </div>
           </TooltipTrigger>
