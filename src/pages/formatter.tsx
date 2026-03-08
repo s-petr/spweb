@@ -246,7 +246,7 @@ export default function Formatter() {
     <Card className='from-muted/75 to-card size-full space-y-2 border-none bg-linear-to-b p-2'>
       <CardHeader className='flex h-fit justify-between gap-x-4 p-2 md:flex-row md:items-center'>
         <div className='flex flex-col gap-y-1'>
-          <CardTitle>Universal Code Formatter {`(${status})`}</CardTitle>
+          <CardTitle>Universal Code Formatter</CardTitle>
           <CardDescription className='text-sm'>
             Automatically detect and format JS, TS, PHP, HTML, CSS, JSON, XML,
             YAML and URLs.
@@ -361,7 +361,7 @@ export default function Formatter() {
             )}
 
           {status === 'formatting' && (
-            <div className='bg-card absolute top-1/2 left-1/2 z-20 flex h-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-md p-2'>
+            <div className='bg-card absolute top-1/2 left-1/2 z-20 flex h-8 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-md p-2'>
               <Spinner className='text-muted-foreground' />
               <p className='text-muted-foreground text-center text-xs select-none'>
                 Formatting...
