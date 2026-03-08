@@ -18,7 +18,7 @@ INSTRUCTIONS
 
   - If the text is code, leave it as code. For example, if the text is HTML code or markdown, do not try to render it as a document. Leave it as code and format the code for best readability.
 
-  - If the format of a block of text cannot be determined, return the input unchanged
+  - If the format of a block of text cannot be determined, return the input unchanged.
     
   - Things to avoid:
     -- Do not shorten or abbreviate your output.

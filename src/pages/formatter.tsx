@@ -51,10 +51,11 @@ const formatterApi = getRouteApi('/formatter')
 export default function Formatter() {
   const { type: inputDataTypeOverride } = formatterApi.useSearch()
 
+  const [status, setStatus] = useState<
+    'ready' | 'formatting' | 'done' | 'failed'
+  >('ready')
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [formattingIsSuccess, setFormattingIsSuccess] = useState(false)
   const [inputDataType, setInputDataType] = useState<InputDataType>(
     inputDataTypeOverride || 'unknown'
   )
@@ -62,8 +63,7 @@ export default function Formatter() {
   const [willConvertToJson, setWillConvertToJson] = useState(false)
 
   async function formatWithAi(input: string) {
-    setInputDataType('ai')
-    setIsLoading(true)
+    setStatus('formatting')
 
     try {
       const res = await fetch(AI_FORMATTER_URL, {
@@ -82,7 +82,7 @@ export default function Formatter() {
       if (!data || !data.length)
         throw new Error('Invalid or empty data in response.')
 
-      setFormattingIsSuccess(true)
+      setStatus('done')
       setOutput(data)
     } catch (error) {
       if (error instanceof Error) {
@@ -90,8 +90,7 @@ export default function Formatter() {
       } else {
         setOutput('Error formatting with AI.')
       }
-    } finally {
-      setIsLoading(false)
+      setStatus('failed')
     }
   }
 
@@ -100,25 +99,25 @@ export default function Formatter() {
   }
 
   async function handleInput(newInput: string) {
-    setFormattingIsSuccess(false)
-
-    if (newInput === '') {
-      handleSetInputDataType('unknown')
+    if (newInput.trim() === '') {
       setOutput('')
+      handleSetInputDataType('unknown')
+      setStatus('ready')
       return
     }
+
+    setStatus('formatting')
 
     const handleParseJson = (
       input: string,
       inputDataTypeSetting: InputDataType = 'json-valid'
-    ) => {
+    ): [InputDataType, string] => {
       const output = parseJson(input, willCleanupString)
-      setOutput(output)
-      handleSetInputDataType(inputDataTypeSetting)
+      return [inputDataTypeSetting, output]
     }
 
     const formattingSequence: {
-      run: () => void | Promise<void>
+      run: () => [InputDataType, string] | Promise<[InputDataType, string]>
       filters: InputDataType[]
     }[] = [
       {
@@ -128,16 +127,14 @@ export default function Formatter() {
       {
         run: async () => {
           const output = await parsePhp(newInput, willCleanupString)
-          setOutput(output)
-          handleSetInputDataType('php')
+          return ['php', output]
         },
         filters: ['php']
       },
       {
         run: async () => {
           const output = await parseHtml(newInput, willCleanupString)
-          setOutput(output)
-          handleSetInputDataType('html')
+          return ['html', output]
         },
         filters: ['html']
       },
@@ -148,24 +145,21 @@ export default function Formatter() {
             willCleanupString,
             willConvertToJson
           )
-          setOutput(output)
-          handleSetInputDataType('xml')
+          return ['xml', output]
         },
         filters: ['xml']
       },
       {
         run: async () => {
           const output = await parseWithPrettier(newInput, 'babel')
-          setOutput(output)
-          handleSetInputDataType('js')
+          return ['js', output]
         },
         filters: ['js']
       },
       {
         run: async () => {
           const output = await parseWithPrettier(newInput, 'typescript')
-          setOutput(output)
-          handleSetInputDataType('ts')
+          return ['ts', output]
         },
         filters: ['ts']
       },
@@ -176,8 +170,7 @@ export default function Formatter() {
             willCleanupString,
             willConvertToJson
           )
-          handleSetInputDataType('url')
-          setOutput(output)
+          return ['url', output]
         },
         filters: ['url']
       },
@@ -188,24 +181,19 @@ export default function Formatter() {
       {
         run: async () => {
           const output = await parseWithPrettier(newInput, 'css')
-          setOutput(output)
-          handleSetInputDataType('css')
+          return ['css', output]
         },
         filters: ['css']
       },
       {
         run: async () => {
           const output = await parseWithPrettier(newInput, 'yaml')
-          setOutput(output)
-          handleSetInputDataType('yaml')
+          return ['yaml', output]
         },
         filters: ['yaml']
       },
       {
-        run: () => {
-          handleSetInputDataType('ai')
-          setOutput('')
-        },
+        run: () => ['ai', ''],
         filters: ['ai']
       }
     ]
@@ -218,17 +206,20 @@ export default function Formatter() {
           (inputDataTypeOverride &&
             action.filters.includes(inputDataTypeOverride))
         ) {
-          await action.run()
-          if (!action.filters.includes('ai')) setFormattingIsSuccess(true)
-          break
+          const [dataType, output] = await action.run()
+          setOutput(output)
+          handleSetInputDataType(dataType)
+          setStatus(action.filters.includes('ai') ? 'ready' : 'done')
+          return
         } else {
           continue
         }
       } catch {
-        setFormattingIsSuccess(false)
         continue
       }
     }
+    setOutput('')
+    setStatus('failed')
   }
 
   useEffect(() => {
@@ -255,7 +246,7 @@ export default function Formatter() {
     <Card className='from-muted/75 to-card size-full space-y-2 border-none bg-linear-to-b p-2'>
       <CardHeader className='flex h-fit justify-between gap-x-4 p-2 md:flex-row md:items-center'>
         <div className='flex flex-col gap-y-1'>
-          <CardTitle>Universal Code Formatter</CardTitle>
+          <CardTitle>Universal Code Formatter {`(${status})`}</CardTitle>
           <CardDescription className='text-sm'>
             Automatically detect and format JS, TS, PHP, HTML, CSS, JSON, XML,
             YAML and URLs.
@@ -268,7 +259,7 @@ export default function Formatter() {
               <Label
                 className={cn(
                   'text-right text-xs',
-                  inputDataType === 'ai'
+                  status !== 'ready' || inputDataType === 'ai'
                     ? 'text-muted-foreground cursor-auto select-none'
                     : 'cursor-pointer'
                 )}
@@ -280,7 +271,7 @@ export default function Formatter() {
                 aria-label='cleanup-string'
                 className='scale-75 disabled:cursor-auto'
                 checked={willCleanupString}
-                disabled={inputDataType === 'ai'}
+                disabled={status !== 'ready' || inputDataType === 'ai'}
                 onCheckedChange={() =>
                   setWillCleanupString((current) => !current)
                 }
@@ -290,7 +281,7 @@ export default function Formatter() {
               <Label
                 className={cn(
                   'text-right text-xs',
-                  inputDataType === 'ai'
+                  status !== 'ready' || inputDataType === 'ai'
                     ? 'text-muted-foreground cursor-auto select-none'
                     : 'cursor-pointer'
                 )}
@@ -302,7 +293,7 @@ export default function Formatter() {
                 aria-label='convert-to-json'
                 className='scale-75 disabled:cursor-auto'
                 checked={willConvertToJson}
-                disabled={inputDataType === 'ai'}
+                disabled={status !== 'ready' || inputDataType === 'ai'}
                 onCheckedChange={() =>
                   setWillConvertToJson((current) => !current)
                 }
@@ -329,10 +320,10 @@ export default function Formatter() {
             spellCheck='false'
             className={cn(
               'h-full resize-none font-mono text-xs',
-              input.length &&
+              status === 'done' &&
                 inputDataType === 'json-valid' &&
                 'focus-visible:ring-green-700/50',
-              input.length &&
+              status === 'done' &&
                 inputDataType === 'json-broken' &&
                 'focus-visible:ring-destructive/50'
             )}
@@ -341,31 +332,40 @@ export default function Formatter() {
         </div>
 
         <div className='relative'>
-          {!!input.length && (
+          {status === 'done' && (
             <CopyButton
               output={output}
               className='absolute top-4 right-6 z-20 size-6'
             />
           )}
 
-          {!formattingIsSuccess && !!input?.length && (
-            <div className='absolute top-1/2 z-20 flex w-full -translate-y-1/2 flex-col items-center gap-2'>
-              <p className='text-muted-foreground w-1/2 text-center text-xs select-none'>
-                {inputDataTypeOverride &&
-                  inputDataTypeOverride !== 'ai' &&
-                  `Could not parse the data as ${getInputDataTypeLabel(inputDataTypeOverride, 'data')}. `}
-                Attempt to format text using an AI model. Can take some time to
-                complete. Do not send sensitive data. Check and verify the
-                output.
+          {!!input.trim().length &&
+            (status === 'failed' ||
+              (status === 'ready' && inputDataType === 'ai')) && (
+              <div className='absolute top-1/2 z-20 flex w-full -translate-y-1/2 flex-col items-center gap-2'>
+                <p className='text-muted-foreground w-1/2 text-center text-xs select-none'>
+                  {inputDataTypeOverride &&
+                    inputDataTypeOverride !== 'ai' &&
+                    `Could not parse the data as ${getInputDataTypeLabel(inputDataTypeOverride, 'data')}. `}
+                  Attempt to format text using an AI model. Can take some time
+                  to complete. Do not send sensitive data. Check and verify the
+                  output.
+                </p>
+                <Button
+                  className='h-8 w-28 cursor-pointer text-xs disabled:cursor-default'
+                  size='sm'
+                  onClick={() => formatWithAi(input)}>
+                  Send to AI
+                </Button>
+              </div>
+            )}
+
+          {status === 'formatting' && (
+            <div className='bg-card absolute top-1/2 left-1/2 z-20 flex h-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-md p-2'>
+              <Spinner className='text-muted-foreground' />
+              <p className='text-muted-foreground text-center text-xs select-none'>
+                Formatting...
               </p>
-              <Button
-                className='w-36 cursor-pointer disabled:cursor-default'
-                size='sm'
-                disabled={isLoading}
-                onClick={() => formatWithAi(input)}>
-                {isLoading && <Spinner className='mr-2' />}
-                {isLoading ? 'Processing...' : 'Send to AI'}
-              </Button>
             </div>
           )}
 
