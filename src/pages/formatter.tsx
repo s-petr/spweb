@@ -44,7 +44,6 @@ SyntaxHighlighter.registerLanguage('html', html)
 SyntaxHighlighter.registerLanguage('xml', xml)
 SyntaxHighlighter.registerLanguage('css', css)
 
-const AI_FORMATTER_URL = 'https://formatter.spweb.dev'
 const DEBOUNCE_TIME_MS = 300
 
 const formatterApi = getRouteApi('/formatter')
@@ -72,7 +71,7 @@ export default function Formatter() {
     setShowLoadingSpinner(true)
 
     try {
-      const res = await fetch(AI_FORMATTER_URL, {
+      const res = await fetch(import.meta.env.VITE_AI_FORMATTER_URL, {
         method: 'POST',
         headers: { 'content-type': 'text/plain' },
         body: input
@@ -89,6 +88,7 @@ export default function Formatter() {
         throw new Error('Invalid or empty data in response.')
 
       setStatus('done')
+      setInputDataType('ai')
       setOutput(data)
     } catch (error) {
       if (error instanceof Error) {
@@ -312,7 +312,8 @@ export default function Formatter() {
               <Label
                 className={cn(
                   'text-right text-xs',
-                  status === 'failed' || inputDataType === 'ai'
+                  ['failed', 'formatting'].includes(status) ||
+                    inputDataType === 'ai'
                     ? 'text-muted-foreground cursor-auto select-none'
                     : 'cursor-pointer'
                 )}
@@ -324,7 +325,10 @@ export default function Formatter() {
                 aria-label='cleanup-string'
                 className='scale-75 disabled:cursor-auto'
                 checked={willCleanupString}
-                disabled={status === 'failed' || inputDataType === 'ai'}
+                disabled={
+                  ['failed', 'formatting'].includes(status) ||
+                  inputDataType === 'ai'
+                }
                 onCheckedChange={() =>
                   setWillCleanupString((current) => !current)
                 }
@@ -334,7 +338,8 @@ export default function Formatter() {
               <Label
                 className={cn(
                   'text-right text-xs',
-                  status === 'failed' || inputDataType === 'ai'
+                  ['failed', 'formatting'].includes(status) ||
+                    inputDataType === 'ai'
                     ? 'text-muted-foreground cursor-auto select-none'
                     : 'cursor-pointer'
                 )}
@@ -346,7 +351,10 @@ export default function Formatter() {
                 aria-label='convert-to-json'
                 className='scale-75 disabled:cursor-auto'
                 checked={willConvertToJson}
-                disabled={status === 'failed' || inputDataType === 'ai'}
+                disabled={
+                  ['failed', 'formatting'].includes(status) ||
+                  inputDataType === 'ai'
+                }
                 onCheckedChange={() =>
                   setWillConvertToJson((current) => !current)
                 }

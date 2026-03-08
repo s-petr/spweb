@@ -22,5 +22,8 @@ node_modules
 *.sln
 *.sw?
 
+# Environment variables
+.env
+
 # Ignore Bun lockfile
 bun.lock
