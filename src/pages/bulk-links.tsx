@@ -136,7 +136,7 @@ export default function BulkLinks() {
               className='absolute top-4 right-6'
             />
           )}
-          <div className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring max-h-96 min-h-32 overflow-y-auto rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden'>
+          <div className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring focus-visible:ring-offset-background max-h-96 min-h-32 overflow-y-auto rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:outline-hidden'>
             {fieldsAreValid &&
               splitInput(input).map((value, index) => (
                 <>

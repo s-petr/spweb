@@ -1,7 +1,6 @@
 import { InputDataType, inputDataTypes } from '@/lib/input-type-label'
 import Home from '@/pages/home'
 import NotFound from '@/pages/not-found'
-import TimestampTool from '@/pages/timestamp'
 import RootLayout from '@/root-layout'
 import {
   createRootRoute,
@@ -44,7 +43,7 @@ const formatterRoute = createRoute({
 const timestampRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/timestamp',
-  component: TimestampTool
+  component: lazy(() => import('./pages/timestamp'))
 })
 
 const bulkLinkRoute = createRoute({
