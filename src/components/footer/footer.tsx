@@ -13,7 +13,7 @@ export default function Footer() {
         <p className='text-center'>
           Hosted with{' '}
           <ExternalLink href='https://dokploy.com'>Dokploy</ExternalLink> on a{' '}
-          <ExternalLink href='https://www.hetzner.com/cloud'>
+          <ExternalLink href='https://hetzner.cloud/?ref=YNvThSZtWo1m'>
             Hetzner VPS
           </ExternalLink>
         </p>
