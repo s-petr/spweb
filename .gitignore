@@ -25,5 +25,5 @@ node_modules
 # Environment variables
 .env
 
-# Ignore Bun lockfile
-bun.lock
+# Ignore Node lockfile
+package-lock.json
