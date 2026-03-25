@@ -1,4 +1,4 @@
-import { InputDataType, inputDataTypes } from '@/lib/input-type-label'
+import { type InputDataType, inputDataTypes } from '@/lib/input-type-label'
 import Home from '@/pages/home'
 import NotFound from '@/pages/not-found'
 import RootLayout from '@/root-layout'

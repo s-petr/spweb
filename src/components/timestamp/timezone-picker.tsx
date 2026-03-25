@@ -1,4 +1,4 @@
-import { TimezoneData, timezoneDataList } from '@/lib/datetime'
+import { timezoneDataList, type TimezoneData } from '@/lib/datetime'
 import { useState } from 'react'
 import AutoComplete from '../ui/autocomplete'
 

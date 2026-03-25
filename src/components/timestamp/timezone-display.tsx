@@ -1,7 +1,7 @@
 import {
   formatWithTimezone,
   lookupTimezoneData,
-  TimezoneData
+  type TimezoneData
 } from '@/lib/datetime'
 import { Label } from '@radix-ui/react-label'
 import { useState } from 'react'

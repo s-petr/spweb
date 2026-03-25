@@ -9,7 +9,10 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
-import { getInputDataTypeLabel, InputDataType } from '@/lib/input-type-label'
+import {
+  getInputDataTypeLabel,
+  type InputDataType
+} from '@/lib/input-type-label'
 import { cn } from '@/lib/shadcn'
 import { Link } from '@tanstack/react-router'
 import React, { useState } from 'react'

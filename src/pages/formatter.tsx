@@ -14,7 +14,10 @@ import { Spinner } from '@/components/ui/spinner'
 import { Switch } from '@/components/ui/switch'
 import { Textarea } from '@/components/ui/textarea'
 import { parseHtml } from '@/lib/html-parser'
-import { getInputDataTypeLabel, InputDataType } from '@/lib/input-type-label'
+import {
+  getInputDataTypeLabel,
+  type InputDataType
+} from '@/lib/input-type-label'
 import { parseJson } from '@/lib/json-parser'
 import { parsePhp } from '@/lib/php-parser'
 import { parseWithPrettier } from '@/lib/prettier'
