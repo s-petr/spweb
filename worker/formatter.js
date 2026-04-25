@@ -187,7 +187,7 @@ export default {
       const output =
         env.AI_PROVIDER_PLATFORM === 'Google'
           ? await callGeminiApi(input, env)
-          : await callOpenAiApi(input, env)
+          : await callDeepseekApi(input, env)
 
       if (!output) {
         return sendError('Could not parse response from AI provider API', 500)
@@ -205,7 +205,7 @@ export default {
   }
 }
 
-async function callOpenAiApi(input, env) {
+async function callDeepseekApi(input, env) {
   const payload = {
     model: env.AI_PROVIDER_MODEL,
     messages: [
@@ -218,6 +218,7 @@ async function callOpenAiApi(input, env) {
         content: input
       }
     ],
+    thinking: { type: 'disabled' },
     stream: false
   }
 

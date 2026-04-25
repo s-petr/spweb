@@ -69,6 +69,7 @@ export default function Formatter() {
   const [willConvertToJson, setWillConvertToJson] = useState(false)
 
   async function formatWithAi(input: string) {
+    console.time('Time taken')
     setStatus('formatting')
     setShowAiButton(false)
     setShowLoadingSpinner(true)
@@ -93,6 +94,8 @@ export default function Formatter() {
       setStatus('done')
       setInputDataType('ai')
       setOutput(data)
+      console.log(`Formatted ${input.length} characters`)
+      console.timeEnd('Time taken')
     } catch (error) {
       if (error instanceof Error) {
         setOutput(`Error formatting with AI: ${error.message}`)
