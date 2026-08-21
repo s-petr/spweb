@@ -283,7 +283,7 @@ export default function Formatter() {
     }
 
     return () => timers.forEach(clearTimeout)
-  }, [status])
+  }, [status, input, inputDataType])
 
   useEffect(() => {
     setOutput('')
