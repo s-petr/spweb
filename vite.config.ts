@@ -30,11 +30,16 @@ export default defineConfig({
   build: {
     rolldownOptions: {
       output: {
-        manualChunks(id) {
-          const match = id.match(/\/node_modules\/((?:@[^/]+\/)?[^/]+)\//)
-          if (match && UI_CHUNKS.has(match[1])) {
-            return 'ui'
-          }
+        codeSplitting: {
+          groups: [
+            {
+              name: 'ui',
+              test(id) {
+                const match = id.match(/\/node_modules\/((?:@[^/]+\/)?[^/]+)\//)
+                return match !== null && UI_CHUNKS.has(match[1])
+              }
+            }
+          ]
         }
       }
     }
